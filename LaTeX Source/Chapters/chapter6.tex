@@ -1,0 +1,47 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter6.tex
+%% NOVA thesis document file
+%%
+%% chapter with conclusion
+%% 3 pages max
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conlusions}
+\label{cha:Conlusions}
+
+In this last chapter, the final conclusions will be drawn from this work and a retrospective will be made on this thesis,  concluding with the proposed future work.
+
+In this thesis, the author presented the work needed to create a adaptive geolocation model, composed by three functional stages (“hierarchical”, “smart”, “advanced”) that were presented in chapter~\ref{cha:Adaptive_Geolocation}, and are dedicated for wearable IoT devices. The main objective was to prove that Adaptive Geolocation of~\gls{IoT} devices can provide a viable approach to the location of these devices, especially those dedicated to people with dementia. The implementation of this model,was integrated in the Carelink~\cite{carelink} platform, and is capable of dynamically choose the best geolocation technology in each situation, to achieve this different operation modes were used. With these operation modes was possible to improve accuracy and energy consumption. Thus using the proposed hypothesis to solve the research question. 
+
+
+Initial location tests were done, to evaluate the accuracy results, of different geolocation techniques. The first with better average accuracy was GNSS with 10 meters. The second test was for Wi-Fi assisted location, this method scans the radio environment looking for Wi-Fi
+access points and based on the know location of such access points returns the approximate location for the device, the average result was 30 meters. The last one with the similar working principle as Wi-Fi was LoRa, the average accuracy was 300 meters.
+
+The results for the tests, were preformed using as microcontroller, the FiPy~\cite{Fipy} with the Pytrack~\cite{PytrackSpecs} localization shield. This shield has a GNSS that is the Quectel L76-L~\cite{quectelspecs} , and the antenna used for the GNSS
+was the internal one. 
+Different hardware configurations will have different results.
+
+The system was capable of hierarchically choose the best location and respond to information from different communication methods and data sources. Concluding the implementation of the “hierarchical” functional stage.
+This initial implementation, of this thesis can be checked in~\ref{app:paper}. This is the research paper, done for the~\gls{ICIST}, with the help of professor João Sarraipa and the Researcher Jorge Calado. The tests for the implementation of the “advanced” stage, were undertaken, testing the battery consumption and communication resilience. This tests occurred in a laboratory scenario, and this implementation stage was not validated with in real life trials, being this last step needed to be considered finished.
+
+The results for the "advanced" stage identified by the author, prove a battery duration of up to 12 hours, when using the LoRa assisted location method, with a 30 seconds period between transmissions. For the communication resilience was conclude that the device was capable of dynamically change the communication method, and the system was able to handle the data transition. The system was also capable of forcing the transition, based on the remaining battery of the device.
+
+The identified drawbacks for the adaptive geolocation model, were the maximum number of messages processed per second, and the fact that the Wi-Fi and LoRa locations were depended from third party providers.
+
+The use case of this model, was the Carelink project, where the model was utilised for knowing the location of wearable devices, used by people who suffer from dementia, as it was tested in real life trials. 
+
+Finally, by analysing the developed system (composed by the model and the device) and its results, it is possible to verify that the approach is promising, and the defined model has provided an appropriate starting point for further research and in the field of assisted living location.
+
+
+\section{Future Work}
+\label{sec:Future_work}
+
+Future work should focus on performing more tests,in order to discover possible faults or bottlenecks related to the capacity of the system to process received messages. For the device future tests are required, to assess the
+location performance and evaluate power consumption, of the geolocation technologies both~\gls{GPS}, GPS-free, and assisted location in indoor environments.
+
+
+Further studies of the solution should be conducted, in order to implement the “advanced” stage proposed in the~\ref{cha:Adaptive_Geolocation}. This functional stage comprises the development and testing of more operation modes, in order to have a profile based decision, taking into account variables such as if the PwD is at home or outside, if the person is accompanied or is alone, and the current time of day. In the end this stage should be validated with real people in real-life trials.
+
+
+
+
