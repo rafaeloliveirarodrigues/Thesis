@@ -9,7 +9,7 @@
 %% Intro, what I did
 %% what I did in the platform, (Zoom)
 %%Architecture
-%% uml, digrama de sequencia, arvora de decisão, solução do paper, tabela com o  formato da mensagens
+%% uml, digrama de sequencia, arvora de decisão, solução do paper, %%tabela com o  formato da mensagens
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Adaptive Geolocation}
@@ -37,7 +37,7 @@ One of the services present in the platform is the tracking service. This micro-
 The model acts as a bridge between the physical world, composed by the hardware devices, and the respective sensors, and the virtual world represented by the Carelink platform.
 
 The location of people with dementia, demands a resilient and fast system, capable of offering real-time data, structured in such a way that is easy to present and visualize, so the next module is capable without much effort to present in a graphical away allowing the user fast access to the information.
-Since the situation when a person with dementia, has an episode of wandering, is highly stressful, for the caregivers or person in charge, is imperative that the system is able to provide an accurate location without being too complex, because this system is intended to track devices that are connected to persons, not to assets or animals, is a main requirement to have high availability.\newline
+Since the situation when a person with dementia, has an episode of wandering, is highly stressful, for the caregivers or person in charge, is imperative that the system is able to provide an accurate location without being too complex, because this system is intended to track devices that are connected to persons, not to assets or animals, is one main requirement to have high availability.\newline
 
 
 The model must be prepared to receive, as well as, interpret messages from different devices and transmission types (LoRa, NB-IoT). In order to achieve this must be device agnostic, the way to solve this issue is using a naming convention for the protocol of communication (MQTT). 
@@ -45,7 +45,7 @@ Following the same ideology of the platform, it must also be divided into small 
 
 As the information may arrive at different rates, or even in the worst-case fail, the model functionalities, work in modules that are independent and they can work isolated, as well as, in parallel. To solve this problem inside of one particular module, was used smart gate queuing and load balancing techniques.
 
-To conclude was intended that the model, alongside with is integrated system, were capable of perform a location, taking into account the remaining battery of the device, and in the end create a profile-based decision system, in charge of dynamically choose the best location.
+To conclude was intended that the model, alongside with is integrated system, were capable of performing a location, taking into account the remaining battery of the device, and in the end create a profile-based decision system, in charge of dynamically choose the best location.
 
 
 
@@ -76,7 +76,7 @@ This model is composed by different modules each of one with a different functio
    This first module is responsible for, the incoming messages. when the previous transmission method was LoRa. This module is responsible for the  next functions.
    \begin{itemize}
      \item Device Input: \\
-      The messages received from LoRa transmission, and is stored in a smart gate  queue.
+      The messages received from LoRa transmission and are stored in a smart gate  queue.
    \end{itemize}
    \begin{itemize}
      \item Location: \\
@@ -84,14 +84,14 @@ This model is composed by different modules each of one with a different functio
    \end{itemize}
    \begin{itemize}
      \item Platform Output: \\
-      In the end the right device is selected and  the combined message, is sent to the Platform.
+      In the end, the right device is selected and  the combined message is sent to the Platform.
    \end{itemize}
 \end{itemize}
 
 
 \begin{itemize}
    \item \textbf{LoRa Downlink} \\
-   The Carelink platform can communicate directly with devices, through MQTT, but this is not possibly directly using LoRa (as explained in the next chapter~\ref{cha:Implementation}), so this module acts as a middle layer for the communication. 
+   The Carelink platform can communicate directly with devices, through MQTT, but this is not possible directly using LoRa (as explained in the next chapter~\ref{cha:Implementation}), so this module acts as a middle layer for the communication. 
    \begin{itemize}
      \item Platform Input:\\ 
      The different MQTT topics are subscribed, and the message is received. Then is converted to JSON, and encrypted to Base64.
@@ -105,9 +105,9 @@ This model is composed by different modules each of one with a different functio
 
 \begin{itemize}
    \item \textbf{Power Management}\\
-   This module is in charge for all the power management capabilities of the model, and its is composed by the following functions. 
+   This module is in charge of all the power management capabilities of the model, and it is composed by the following functions. 
    \begin{itemize}
-     \item Check Battery: \\This function is responsible for analyse the receive message, verify the battery level, and the communications in currently in use. 
+     \item Check Battery: \\This function is responsible for analysing the received message, verify the battery level, and the communications that are currently in use. 
    \end{itemize}
    \begin{itemize}
      \item Remaining Battery: \\Where the battery level is converted into the remaining battery duration.
@@ -119,27 +119,27 @@ This model is composed by different modules each of one with a different functio
 
 \begin{itemize}
 \item \textbf{Web Core} \\
-This is the core module where all the others are build on top. The main characteristics of this module will be discussed in more detail in the next chapter~\ref{cha:Implementation}, but essentially its a web server capable of running JavaScript functions.
+This is the core module where all the others are built on top. The main characteristics of this module will be discussed in more detail in the next chapter~\ref{cha:Implementation}, but essentially it is a web server capable of running JavaScript functions.
 \end{itemize}
 
 \begin{itemize}
    \item \textbf{Non LoRa Uplink} \\
-    This module shares the same functions as the "LoRa Uplink", however is designed to be more communication agnostic, and therefore serve more devices. 
+    This module shares the same functions as the "LoRa Uplink", however, is designed to be more communication agnostic, and therefore serve more devices. 
 \end{itemize}
 
 
 \begin{itemize}
    \item \textbf{Security} \\
-The "Security" module is responsible for the correct operation of the model. This module consists of the following functions.
+The "Security"  module is responsible for the correct operation of the model. This module consists of the following functions.
    \begin{itemize}
      \item Redundancy: \\
-      This function is achieved, through the "LoRa to Platform" and "Other to Platform", by having more than one path to transmit the message to platform.
-      Inside both there is also a redundancy location mechanism.
-      The last redundancy features is the fact of the "Web Core" is running in a docker container. 
+      This function is achieved, through the "LoRa to Platform" and "Other to Platform", by having more than one path to transmit the message to the platform.
+      Inside both, there is also a redundancy location mechanism.
+      The last redundancy feature is the fact of the "Web Core" is running in a docker container. 
    \end{itemize}
    \begin{itemize}
      \item Secure Login:  \\
-      The access to the "Web Core" is done using a login with username and password, but the password is not store, only the hash.
+      The access to the "Web Core" is done using a login with username and password, but the password is not stored, only the hash.
    \end{itemize}
    \begin{itemize}
      \item Drop Non-Standard Messages: \\
@@ -149,28 +149,28 @@ The "Security" module is responsible for the correct operation of the model. Thi
 
 \begin{itemize}
    \item \textbf{Monitoring} \\
-   Using the following functions, and with ability to connect with the other modules, is capable of ensure the normal operation for the model.
+   Using the following functions, and with the ability to connect with the other modules, is capable of ensuring the normal operation for the model.
    \begin{itemize}
      \item Analysis:\\
      This function is mainly done in the "LoRa to Platform" and "Other to Platform" modules, where the number of messages flowing, is registered in different points.
    \end{itemize}
    \begin{itemize}
      \item Reporting: \\
-     Making use of the previous knowledge of "Analysis", this function generates a daily e-mail report, and in abnormal situation, where the non-processed messages achieves a defined threshold, this functions sends an SMS message.
+     Making use of the previous knowledge of "Analysis", this function generates a daily e-mail report, and at an abnormal situation, where the non-processed messages achieve a defined threshold, this functions sends an SMS message.
    \end{itemize}
 \end{itemize}
 
 \begin{itemize}
    \item \textbf{Development}\\
-   This last module exist but is not represented in the schematic, since it is not used in a production environment. The development module aims, to provide a sandbox, where the following features can be tested, alongside with the other modules that are in a production environment, but without being in production.
+   This last module exists but is not represented in the schematic, since it is not used in a production environment. The development module aims, to provide a sandbox, where the following features can be tested, alongside with the other modules that are in a production environment, but without being in production.
    \begin{itemize}
-     \item Debugging:  \\This  function, is used in case something goes wrong. It´s possible to replicate, in order to find the error.
+     \item Debugging:  \\This  function is used in case something goes wrong. It is possible to replicate,  to find the error.
    \end{itemize}
    \begin{itemize}
-     \item Updates Testing: \\When the error is found, its possible to develop and test an update. After some iterations the update is finished and ready to production. 
+     \item Updates Testing: \\When the error is found, it is possible to develop and test an update. After some iterations, the update is finished and ready for production. 
    \end{itemize}
    \begin{itemize}
-     \item Map visualization: \\ In order to have a place for visualization of the data, in a real world map, to get an idea of what is going to be show next, in the platform, and for easy interpretation of the data, was created this function.
+     \item Map visualization: \\ In order to have a place for visualization of the data, in a real world map, to get an idea of what is going to be shown next, in the platform, and for easy interpretation of the data, was created this function.
    \end{itemize}
 \end{itemize}
 
@@ -218,11 +218,9 @@ The first stage called hierarchical, in which the best location is decided using
   \label{fig:Model_overview}
 \end{figure}
 Based on the proposed model the author started to
-develop the profile-based decision system. In this initial phase it
-only includes the "hierarchical" functional stage. Its
-architecture is represented in Figure~\ref{fig:Model_overview}. 
+develop the profile-based decision system. In this initial phase, it only includes the "hierarchical" functional stage. Its architecture is represented in Figure~\ref{fig:Model_overview}. 
 In the right dotted square from this figure, is the workflow behind the "Geolocation Solver" block, that is  where the model is working, and its operation is described in the following.
-First as described at~\ref{susec:Lora_to_Platform} in page~\pageref{susec:Lora_to_Platform}, an input message from the device is received containing a JSON, where exists an object with the status of the device. This status messages has the following fields:
+First as described at~\ref{susec:Lora_to_Platform} on page~\pageref{susec:Lora_to_Platform}, an input message from the device is received containing a JSON, there exists an object with the status of the device. This status message has the following fields:
 \begin{figure}[htbp]
   \centering
     \scalebox{0.9}{
@@ -239,7 +237,7 @@ In the first block "Has GNSS?", the location field of~\ref{fig:JSON_Status} is a
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Stage 1 Wifi %%%%%%%%%%%%%%%%%%
 
-In case the location field is empty or the coordinates are considered not valid, the following block is the “Has Wi-Fi APs?”. In this the "wifiAPs" field from the above-mentioned JSON is analysed. If it is different from null, this payload is used to perform the assisted location, based on the Wi-Fi data. This data will then be sent to three different API,  using a load balancer based in the sequential Round Robin, in order to obtain the best information for the location, and at the same time use less APIs calls, and prevent the APIs from refuse the requests. The three used APIs in this work were, Google Geolocation API, Here Position API and OpenCelliD Cellular Geolocation API. This load balancer uses the following equation:
+In case the location field is empty or the coordinates are considered not valid, the following block is the “Has Wi-Fi APs?”. In this, the "wifiAPs"  field from the above-mentioned JSON is analysed. If it is different from null, this payload is used to perform the assisted location, based on the Wi-Fi data. This data will then be sent to three different API,  using a load balancer based in the sequential Round Robin, to obtain the best information for the location, and at the same time use fewer APIs calls, and prevent the APIs from refuse the requests. The three used APIs in this work were, Google Geolocation API, Here Position API and OpenCelliD Cellular Geolocation API. This load balancer uses the following equation:
 
 \begin{equation} \label{eq:loadbalancer}
     h(x) = \begin{cases}
@@ -283,7 +281,7 @@ blocks, failed to  return a valid location, it is returned location unknown.\new
 
 
 The second stage formalises the location decision
-function based in two characteristics at the same time: the
+function based on two characteristics at the same time: the
 battery level of the device and the location accuracy for the
 chosen technology, thus being more “advanced”. 
 This stage also adds another location method, the location through beacons BLE, that can be used indoors. This beacons have a short-range, and are used in the situation where GNSS is not working, and there is no WiFi available, for example, the house of a person with dementia, in a rural place. 
@@ -291,7 +289,7 @@ Alongside with the addition of this location method, there is also an addition o
 
 In this stage for assuring the high availability needed for this work, the geolocation function should be capable of
 knowing the remaining battery. In case the person is in a dangerous situation, or in an area that was previously assigned as unsafe, this stage does the balance between the optimal location and the more power efficient location.
-As represented in the following figure~\ref{fig:Stage2_State_MAchine}, where the different numbers $(1, 2, 3, 4)$ represent the different levels of Geolocation accuracy, and battery saving. Using the path $1$ exists more location sources, so it has higher accuracy, but also require more battery. 
+As represented in the following figure~\ref{fig:Stage2_State_MAchine}, where the different numbers $(1, 2, 3, 4)$ represent the different levels of Geolocation accuracy, and battery saving. Using path $1$ exists more location sources, so it has higher accuracy, but also require more battery. 
 
 \begin{figure}[htbp]
   \centering
@@ -307,13 +305,13 @@ As represented in the following figure~\ref{fig:Stage2_State_MAchine}, where the
 \item \textbf{Stage 3} - Smart 
 \end{itemize}
 
-In the last stage, a more advanced location function is formalised. Its decision capability for choosing the technologies to use, are based in the surrounding environment. For example, if a patient is not showing any activity by a long period of time, it is night time and he/she is in a safe place, as home it can be deducted that the person is sleeping, and therefore the sampling time for the location can be reduced, thus saving battery.
+In the last stage, a more advanced location function is formalised. Its decision capability for choosing the technologies to use, are based in the surrounding environment. For example, if a patient is not showing any activity by a long period of time, it is night time and he/she is in a safe place, as the home it can be deduced that the person is sleeping, and therefore the sampling time for the location can be reduced, thus saving battery.
 Another example is by combining additional
 sensor data, such as  an accelerometer that can detect if the~\gls{PwD} has fallen, the priority can be given to the method with the best accuracy, because of this dangerous situation.
 
-This stage introduces the addition of SigFox and Pymesh, for transmitting the data, in the device side. SigFox has a daily limit for the Uplink messages, and a maximum size too small to transmit a full message, therefore is only used in the worst-case scenario. The Pymesh uses LoRa but only the LoRa Modulation to create a mesh network between the devices, this is the method of the last resource when all the others failed.
+This stage introduces the addition of SigFox and Pymesh, for transmitting the data, in the device side. SigFox has a daily limit for the Uplink messages, and a maximum size too small to transmit a full message, therefore, is only used in the worst-case scenario. The Pymesh uses LoRa but only the LoRa Modulation to create a mesh network between the devices, this is the method of the last resource when all the others failed.
 
-To conclude, this last stage combine a set of different
+To conclude, this last stage combines a set of different
 factors to categorize and do a profile-based decision.
 
 \begin{table}[htbp]
@@ -368,9 +366,9 @@ In summary, the system that was is illustrated in Figure~\ref{fig:Model_overview
 The first step in the proposed system is to collect sensor data from the~\gls{PwD} wearing the device. Afterwards, a specific transmission method is selected, of which the options may vary from LoRa to NB-IoT.
 The second step, already inside of the platform, is to combine the previous information in the purposed model called Adaptive Geolocation Solver, in order to get the best location possible, this model had different stages of development has described in~\nameref{susec:Stages_Operation}, as well as, is constituted by 6 has it is possible to observe at~\nameref{sec:adaptive_geolocation_solver}. 
 
-The Carelink platform, alongside with the model, are responsible for managing the devices, and ensure the high availability needed, in order to always know the location of the patient, especially when this one is having an episode of wandering and its lost. 
+The Carelink platform, alongside with the model, is responsible for managing the devices, and ensure the high availability needed, in order to always know the location of the patient, especially when this one is having an episode of wandering and its lost. 
 The final geolocation information is then passed on to the corresponding micro-service, in this case, the tracking service, and then the final step is sending the response from the tracking service to the GUI.
-Once in the GUI the user responsible for the patient can be alerted,  when a geofencing alert is raised, with the information that the person has cross to an unsafe area.
+Once in the GUI the user responsible for the patient can be alerted,  when a geofencing alert is raised, with the information that the person has crossed to an unsafe area.
 
 To conclude the next~\acrshort{SWOT} analysis of the model summarizes the different aspects of this work.\newline
 \begin{figure}[htbp]
