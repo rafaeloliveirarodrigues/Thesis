@@ -566,7 +566,7 @@ The following figure~\ref{fig:LoRaPowerTable}, represents the current results fr
 \begin{figure}[htbp]
   \centering
   
-    {\includegraphics[width=\linewidth]{Chapters/Figures/Lora2.PNG}}%
+    {\includegraphics[width=0.91\linewidth]{Chapters/Figures/Lora2.PNG}}%
  
   \caption{LoRa Power Table~\cite{Microcontroller2017}}
   \label{fig:LoRaPowerTable}
@@ -575,41 +575,57 @@ The following figure~\ref{fig:LoRaPowerTable}, represents the current results fr
 \subsection{NB-IoT}
 \label{subsec:NB} 
 
-The next communication method used for this test was, NB-IoT. The procedure was the same as above starting by using only communication and then increasing the battery usage with GNSS and accelerometer, ending with all of this plus the scan of WiFi APs. The NB-IoT is expected to have poor performance compared to LoRa, because of the message size of $245$ bytes plus $134$ bytes if WiFi data is used, which is $2.22$ to $2.71$ times higher than LoRa. The results for this method are described in the following table~\ref{tab:NB_Power}
+The next communication method used for this test was, NB-IoT. The procedure was the same as above starting by using only communication and then increasing the battery usage with GNSS and accelerometer, ending with all of this plus the scan of WiFi APs. The NB-IoT is expected to have poor performance compared to LoRa, because of the message size of $245$ bytes plus $134$ bytes if WiFi data is used, which is $2.22$ to $2.71$ times higher than LoRa. The results for this method are described in the following table~\ref{tab:NB_Power}.
 
 \begin{table}[htbp]
 \centering
-\begin{tabular}{@{}cclclcl@{}}
-\toprule
-\multicolumn{1}{l}{} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Communication\\ Only\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Communication\\ GNSS, Sensor\end{tabular}} & \multicolumn{2}{l}{\begin{tabular}[c]{@{}l@{}}Communication\\ GNSS, Sensor,\\ Scan WiFi\end{tabular}} \\ \midrule
-\begin{tabular}[c]{@{}c@{}}Battery Duration\end{tabular} & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{4h 30m} & \multicolumn{2}{c}{4h} \\
-Average Current & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{185mA} & \multicolumn{2}{c}{208mA} \\
-Average Power & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{685mW} & \multicolumn{2}{c}{770mW} \\ \bottomrule
-\end{tabular}
-\caption{NB-IoTPower}
-\label{tab:NB_Power}
+    \begin{threeparttable}[!ht]
+
+        \begin{tabular}{@{}cclclcl@{}}
+        \toprule
+        \multicolumn{1}{l}{} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Communication\\ Only\tnote{*}\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Communication\\ GNSS, Sensor\end{tabular}} & \multicolumn{2}{l}{\begin{tabular}[c]{@{}l@{}}Communication\\ GNSS, Sensor,\\ Scan WiFi\end{tabular}} \\ \midrule
+        \begin{tabular}[c]{@{}c@{}}Battery Duration\end{tabular} & \multicolumn{2}{c}{5h 25m} & \multicolumn{2}{c}{4h 30m} & \multicolumn{2}{c}{4h} \\
+        Average Current & \multicolumn{2}{c}{148mA} & \multicolumn{2}{c}{185mA} & \multicolumn{2}{c}{208mA} \\
+        Average Power & \multicolumn{2}{c}{548mW} & \multicolumn{2}{c}{685mW} & \multicolumn{2}{c}{770mW} \\ \bottomrule
+        \end{tabular}
+            
+        \begin{tablenotes}
+        \item[*] Test not done with final code.
+        \end{tablenotes}
+    \caption{NB-IoT Power}
+    \label{tab:NB_Power}
+    \end{threeparttable}
 \end{table}
-
-
 
 \subsection{WiFi}
 \label{subsec:WiFi}
 
-The last communication used for these tests was WiFi, this method is expected to have the worst battery performance, but at the same time is the one with higher transfer speeds, meaning the airtime for the same data is lower, so in right circumstances could perform better than the previous two, this was the objective of the test, although WiFi could not be used as viable options due to the short-range, and the need for authentication. The results for the same tests are expressed in the next table~\ref{tab:WiFi_Power}.
-\newline
+The last communication used for these tests was WiFi, this method is expected to have the worst battery performance, but at the same time is the one with higher transfer speeds, meaning the airtime for the same amount of data is lower, so in right circumstances could perform better than the previous two, this was the objective of the test. WiFi could not be used as viable options in the final code due to the short-range, and the need for authentication. Surprisingly, the results for the tests concluded that WiFi had better battery duration that NB-IoT. The reader should be inform that these tests were not done with the final code. They were only with hard-coded values, meaning they do not proof that WiFi is better than NB-IoT, and will not be present in the next section for comparison. These values are expressed in the next table~\ref{tab:WiFi_Power}.\newline
 \begin{table}[htbp]
 \centering
-\begin{tabular}{@{}cclclcl@{}}
-\toprule
-\multicolumn{1}{l}{} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Communication\\ Only\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Communication\\ GNSS, Sensor\end{tabular}} & \multicolumn{2}{l}{\begin{tabular}[c]{@{}l@{}}Communication\\ GNSS, Sensor,\\ Scan WiFi\end{tabular}} \\ \midrule
-\begin{tabular}[c]{@{}c@{}}Battery  Duration\end{tabular} & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{??} \\
-Current & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{??} \\
-Power & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{??} \\ \bottomrule
-\end{tabular}
-\caption{WiFi Power}
+\begin{threeparttable}[!ht]
+
+    \begin{tabular}{@{}cclclcl@{}}
+    \toprule
+    \multicolumn{1}{l}{} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Communication\\ Only\tnote{*}\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Communication\\ GNSS, Sensor\tnote{*}\end{tabular}} & \multicolumn{2}{l}{\begin{tabular}[c]{@{}l@{}}Communication\\ GNSS, Sensor,\\ Scan WiFi\tnote{*}\end{tabular}} \\ \midrule
+    \begin{tabular}[c]{@{}c@{}}Battery  Duration\end{tabular} & \multicolumn{2}{c}{5h 40m} & \multicolumn{2}{c}{5h 10m} & \multicolumn{2}{c}{4h 35m} \\
+    Average Current & \multicolumn{2}{c}{141mA} & \multicolumn{2}{c}{155mA} & \multicolumn{2}{c}{175mA} \\
+    Average Power & \multicolumn{2}{c}{522mW} & \multicolumn{2}{c}{574mW} & \multicolumn{2}{c}{648mW} \\ \bottomrule
+    \end{tabular}
+    
+    \begin{tablenotes}
+    \item[*] Test not done with final code.
+    \end{tablenotes}
+   \caption{WiFi Power}
 \label{tab:WiFi_Power}
+\end{threeparttable}
 \end{table}
-\newline
+
+
+
+
+
+
 
 
 \subsection{Comparison}
@@ -617,18 +633,28 @@ Power & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{??} & \multicolumn{2}{c}{??}
 To close this section, a comparison with different communications methods, can be observed in the next table~\ref{tab:Battery Duration}. This table combines all of the data from the previous, making easier to compare the different methods, should always be taking into consideration the conditions for the different tests. As expected LoRa had the best battery duration, followed by NB-IoT and WiFi had the worst battery duration. 
 \newline
 
+
 \begin{table}[htbp]
 \centering
-\begin{tabular}{@{}lccc@{}}
-\toprule
- & NB-IoT & LoRa   \\ \midrule
-1- Communication only & ?? & 12h & ??  \\
-\begin{tabular}[c]{@{}l@{}}2- Communication \\ GPS, Sensor\end{tabular} & 4h 30m & 9h & ??  \\
-\begin{tabular}[c]{@{}l@{}}3-Communication\\ GPS, Sensor, Scan WiFi\end{tabular} & 4h & 8h 30m & ?? \\ \bottomrule
-\end{tabular}
-\caption{Battery Duration}
-\label{tab:Battery Duration}
+    \begin{threeparttable}[!ht]
+
+        \begin{tabular}{@{}lccc@{}}
+        \toprule
+         & NB-IoT & LoRa   \\ \midrule
+        1- Communication only & 5h 30m\tnote{*} & 12h &  \\
+        \begin{tabular}[c]{@{}l@{}}2- Communication \\ GPS, Sensor\end{tabular} & 4h 30m & 9h   \\
+        \begin{tabular}[c]{@{}l@{}}3-Communication\\ GPS, Sensor, Scan WiFi\end{tabular} & 4h & 8h 30m  \\ \bottomrule
+        \end{tabular}
+            
+        \begin{tablenotes}
+        \item[*] Test not done with final code.
+        \end{tablenotes}
+    \caption{Battery Duration}
+    \label{tab:Battery Duration}
+    \end{threeparttable}
 \end{table}
+
+
 %########################## End Power Management
 %########################## Comunication 
 

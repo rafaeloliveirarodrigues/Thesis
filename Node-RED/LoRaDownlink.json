@@ -1,0 +1,474 @@
+[
+    {
+        "id": "6186914.abb437",
+        "type": "tab",
+        "label": "LoRa Downlink ",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9d8e9961.c10cb8",
+        "type": "mqtt in",
+        "z": "6186914.abb437",
+        "name": "",
+        "topic": "+/status",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "YOUR BROKER",
+        "x": 50,
+        "y": 120,
+        "wires": [
+            [
+                "93753226.4a3e8"
+            ]
+        ]
+    },
+    {
+        "id": "9ab27ae5.c4b0c8",
+        "type": "mqtt in",
+        "z": "6186914.abb437",
+        "name": "EnergyProfile",
+        "topic": "+/configuration/energyProfile",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "YOUR BROKER",
+        "x": 70,
+        "y": 300,
+        "wires": [
+            [
+                "1d99ebb.cd5ef14",
+                "58e9b497.2168ec"
+            ]
+        ]
+    },
+    {
+        "id": "2b3fdc58.db38e4",
+        "type": "mqtt in",
+        "z": "6186914.abb437",
+        "name": "Active",
+        "topic": "+/active",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "YOUR BROKER",
+        "x": 50,
+        "y": 60,
+        "wires": [
+            [
+                "ef9a771e.055a98"
+            ]
+        ]
+    },
+    {
+        "id": "8078d464.69db48",
+        "type": "mqtt in",
+        "z": "6186914.abb437",
+        "name": "Wifi",
+        "topic": "+/configuration/wifi",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "YOUR BROKER",
+        "x": 50,
+        "y": 400,
+        "wires": [
+            [
+                "f94e506e.c0207",
+                "e73cd24.17f543"
+            ]
+        ]
+    },
+    {
+        "id": "93753226.4a3e8",
+        "type": "debug",
+        "z": "6186914.abb437",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1190,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1d99ebb.cd5ef14",
+        "type": "debug",
+        "z": "6186914.abb437",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1190,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "f94e506e.c0207",
+        "type": "debug",
+        "z": "6186914.abb437",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1170,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "6597bfe.973934",
+        "type": "function",
+        "z": "6186914.abb437",
+        "name": "Node Select",
+        "func": "\ndata=JSON.stringify(msg.topic);\ndata=data.slice(3,5)\ndata=data.replace(\"/\",\"\")\n\nmsg.topic=\"YOUR APP/devices/cp\"+data +\"/down\"\n//msg.topic=\"YOUR APP/devices/node1/down\"\n\nvar payload={\n    port : 1,\n    confirmed: true,\n    payload_raw: msg.payload\n    \n};\n\nmsg.payload=payload\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 930,
+        "y": 280,
+        "wires": [
+            [
+                "9057fa00.1fc058",
+                "7283431b.b5aabc"
+            ]
+        ]
+    },
+    {
+        "id": "7283431b.b5aabc",
+        "type": "debug",
+        "z": "6186914.abb437",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1167,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c34e916f.65d96",
+        "type": "base64",
+        "z": "6186914.abb437",
+        "name": "",
+        "action": "str",
+        "property": "payload",
+        "x": 740,
+        "y": 280,
+        "wires": [
+            [
+                "6597bfe.973934"
+            ]
+        ]
+    },
+    {
+        "id": "7fbb40ea.f104c",
+        "type": "function",
+        "z": "6186914.abb437",
+        "name": "topic energyProfile",
+        "func": "\n\nvar payload={\n    \"configuration/energyProfile\" : msg.payload\n    \n};\n\nmsg.payload=payload\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "c34e916f.65d96"
+            ]
+        ]
+    },
+    {
+        "id": "d4dd96c5.819658",
+        "type": "function",
+        "z": "6186914.abb437",
+        "name": "topic wifi",
+        "func": "\n\n\n\nvar payload={\n    \"configuration/wifi\" : msg.payload\n    \n};\n\nmsg.payload=payload\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 459,
+        "y": 360,
+        "wires": [
+            [
+                "c34e916f.65d96"
+            ]
+        ]
+    },
+    {
+        "id": "58e9b497.2168ec",
+        "type": "json",
+        "z": "6186914.abb437",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "7fbb40ea.f104c"
+            ]
+        ]
+    },
+    {
+        "id": "e73cd24.17f543",
+        "type": "json",
+        "z": "6186914.abb437",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 250,
+        "y": 360,
+        "wires": [
+            [
+                "d4dd96c5.819658"
+            ]
+        ]
+    },
+    {
+        "id": "9057fa00.1fc058",
+        "type": "mqtt out",
+        "z": "6186914.abb437",
+        "name": "TTN Down",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "YOUR BROKER",
+        "x": 1186,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ef9a771e.055a98",
+        "type": "debug",
+        "z": "6186914.abb437",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1190,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "98333252.4c635",
+        "type": "function",
+        "z": "6186914.abb437",
+        "name": "ping LoRa",
+        "func": "msg.topic=msg.dev_id\nreturn {\n  counter:msg.counter,\n  dev_id: msg.dev_id,\n  port: 0,\n  schedule: \"first\",\n  payload:\"ping\"\n   \n};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "e735ddb3.fcf5f"
+            ]
+        ]
+    },
+    {
+        "id": "2e0ba4e7.7de78c",
+        "type": "change",
+        "z": "6186914.abb437",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "dev_id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 552,
+        "y": 540,
+        "wires": [
+            [
+                "8bceeb00.7cb7f8"
+            ]
+        ]
+    },
+    {
+        "id": "e735ddb3.fcf5f",
+        "type": "switch",
+        "z": "6186914.abb437",
+        "name": "",
+        "property": "counter",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "neq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 412,
+        "y": 500,
+        "wires": [
+            [
+                "9204bc74.67534"
+            ],
+            [
+                "2e0ba4e7.7de78c"
+            ]
+        ]
+    },
+    {
+        "id": "8bceeb00.7cb7f8",
+        "type": "function",
+        "z": "6186914.abb437",
+        "name": "Ping 10 msg",
+        "func": "if(0==(msg.counter%10)){\nreturn msg;\n}\nelse{}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 712,
+        "y": 540,
+        "wires": [
+            [
+                "d3c3f600.b85318",
+                "9204bc74.67534"
+            ]
+        ]
+    },
+    {
+        "id": "d3c3f600.b85318",
+        "type": "debug",
+        "z": "6186914.abb437",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 952,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "3e9df07d.5a518",
+        "type": "debug",
+        "z": "6186914.abb437",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 152,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "9204bc74.67534",
+        "type": "base64",
+        "z": "6186914.abb437",
+        "name": "",
+        "action": "str",
+        "property": "payload",
+        "x": 760,
+        "y": 492,
+        "wires": [
+            [
+                "1fddc037.af605"
+            ]
+        ]
+    },
+    {
+        "id": "7f75e945.acb158",
+        "type": "link in",
+        "z": "6186914.abb437",
+        "name": "",
+        "links": [
+            "10605526.d36a7b"
+        ],
+        "x": 17,
+        "y": 500,
+        "wires": [
+            [
+                "98333252.4c635",
+                "3e9df07d.5a518"
+            ]
+        ]
+    },
+    {
+        "id": "1fddc037.af605",
+        "type": "function",
+        "z": "6186914.abb437",
+        "name": "Node Select Ping",
+        "func": "\ndata=msg.topic\n\n\nmsg.topic=\"YOUR APP/devices/\"+data +\"/down\"\n//msg.topic=\"YOUR APP/devices/node1/down\"\n\nvar payload={\n    port : 1,\n    confirmed: false,\n    payload_raw: msg.payload\n    \n};\n\nmsg.payload=payload\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 952,
+        "y": 491,
+        "wires": [
+            [
+                "9057fa00.1fc058"
+            ]
+        ]
+    },
+    {
+        "id": "b8a92245.2761f",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "87.44.18.29",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "a9103d0e.07b3d",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "ttn",
+        "broker": "eu.thethings.network",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

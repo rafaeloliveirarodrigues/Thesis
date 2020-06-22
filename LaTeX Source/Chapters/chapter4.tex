@@ -284,7 +284,7 @@ As it is possible to observe in the previous figure~\ref{fig:LoRa_Uplink}, the L
 
 \begin{itemize}
    \item \textbf{Power Management}\\
-   This module is in responsible for the power management of the devices, and it is used mainly in the last two functional stages ("Advanced"  and "Smart"). The module is represented in  figure~\ref{fig:Power_Management}. The working principle is the following first on the left side of the figure, the status topic is subscribed. Then the message is converted to JSON, and is filtered only the messages from Pycom devices. The message is analysed and the battery level is checked. If the battery level is valid, the remaining battery is calculated, as well as, the percentage of the total capacity, for example, "CP20" 10 hours 90\%. Then based on this information the active components and the sample rate of them are adjusted. For the later stage, this module could take into account if the device is paired  with carer smartphone, by checking the "accompanied" flag of the status message, and by subscribing "zones" topic check where the device is working, being the possibilities the following: home, regular, dangerous. This was defined by Jorge in~\cite{githuMQTT}, but not implemented in this module.
+   This module is  responsible for the power management of the devices, and it is used mainly in the last two functional stages ("Advanced"  and "Smart"). The module is represented in  figure~\ref{fig:Power_Management}. The working principle is the following first on the left side of the figure, the status topic is subscribed. Then the message is converted to JSON, and is filtered only the messages from Pycom devices. The message is analysed and the battery level is checked. If the battery level is valid, the remaining battery is calculated, as well as, the percentage of the total capacity, for example, "CP20" 10 hours 90\%. Then based on this information the active components and the sample rate of them are adjusted. For the later stage, this module could take into account if the device is paired  with carer smartphone, by checking the "accompanied" flag of the status message, and by subscribing "zones" topic check where the device is working, being the possibilities the following: home, regular, dangerous. This was defined by Jorge in~\cite{githuMQTT}, but not implemented in this module.
     \begin{figure}[htbp]
       \centering
       
@@ -390,7 +390,7 @@ TTN then forms a query with all the meta-data. The Query is posted to the endpoi
 
 TTN console then looks at the locations coming back and, if there are multiple, it sends the most accurate through~\gls{MQTT} to Node-Red.
 
-In order to use LoRa, it was necessary to get coverage, of the local where this work was developed, for these two gateways were deployed as shown in figure~\ref{fig:LoRaGWs}.
+In order to use LoRa, it was necessary to get coverage, of the local where this work was developed, for these two gateways were deployed as shown in figure~\ref{fig:LoRaGWs}, the complete guide for the instalation and configuration of the Gateways can be found at~\cite{githubnodered}.
 
 %(Criar Imagem com pycom na caixa e fora, editar  o GW por imagem fcttopo)
 
