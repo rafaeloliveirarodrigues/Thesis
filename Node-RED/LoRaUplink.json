@@ -1,0 +1,963 @@
+[
+    {
+        "id": "58b39156.9dd24",
+        "type": "tab",
+        "label": "LoRa Uplink",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1ce4d8f7.23f7c7",
+        "type": "mqtt out",
+        "z": "58b39156.9dd24",
+        "name": "Output",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "b8a92245.2761f",
+        "x": 1930,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "5cc98c53.d78354",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "Ask Google Geolocation API",
+        "func": "var google_apikey = \"YOUR KEY\";\nvar dev_url = \"https://www.googleapis.com/geolocation/v1/geolocate?key=\"+google_apikey;\n\nvar data = {\n            \"considerIp\": \"false\",\n            \"wifiAccessPoints\": []\n            };\n\nif (msg.payload.wifiAPs) {\n\tdata[\"wifiAccessPoints\"][0] = {\n\t\t\t\t\"macAddress\": msg.payload.wifiAPs.mac_1,\n\t\t\t\t\"signalStrength\": msg.payload.wifiAPs.rssi_1\n\t\t\t\t};\n}\n\nif (msg.payload.wifiAPs.mac_2) {\n\tdata[\"wifiAccessPoints\"][1] = {\n\t\t\t\t\"macAddress\":msg.payload.wifiAPs.mac_2,\n\t\t\t\t\"signalStrength\":msg.payload.wifiAPs.rssi_2\n\t\t\t\t};\n}\n\nif (msg.payload.wifiAPs.mac_3) {\n\tdata[\"wifiAccessPoints\"][2] = {\n\t\t\t\t\"macAddress\": msg.payload.wifiAPs.mac_3,\n\t\t\t\t\"signalStrength\": msg.payload.wifiAPs.rssi_3\n\t\t\t\t};\n}\n\nvar msg = {\n            \"method\" : \"POST\",\n            \"url\" : dev_url,\n            \"headers\" : {\n                        \"Content-Type\": \"application/json\"\n                        },\n            \"payload\" : JSON.stringify(data)\n            };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1520,
+        "y": 340,
+        "wires": [
+            [
+                "20c3b4e.7cfd04c"
+            ]
+        ]
+    },
+    {
+        "id": "5b902438.1f10fc",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "Here GPS",
+        "func": "var msg1 = {};\n\n\n\nif (msg.payload.location) {\n\n    msg1.payload = msg.payload;\n    msg1.payload.date = Date().toString();\n    msg1.payload.lon = parseFloat(msg.payload.location.lng.toFixed(7))\n    msg1.payload.lat = parseFloat(msg.payload.location.lat.toFixed(7))\n    msg1.payload.type= \"here\"\n    \n    // processed with HERE\n    if (msg.payload.location.accuracy) {\n        msg1.payload.radius = msg.payload.location.accuracy;\n        delete msg1.payload.wifiAPs;\n    }\n\n    delete msg1.payload.wifiAPs;\n\n    //delete msg1.payload.location;\n}\n\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2070,
+        "y": 218,
+        "wires": [
+            [
+                "f1dd1b0e.aad328",
+                "337a5259.50f61e"
+            ]
+        ]
+    },
+    {
+        "id": "17d2ae21.fe3942",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "Ask HERE Geolocation API",
+        "func": "var here_apikey = \"YOUR KEY\";\n\nvar dev_url = \"https://pos.ls.hereapi.com/positioning/v1/locate?apiKey=\"+here_apikey;\n\nvar data = {\n            \"wlan\": []\n            };\n\nif (msg.payload.wifiAPs.mac_1) {\n\tdata[\"wlan\"][0] = {\n\t\t\t\t\"mac\": msg.payload.wifiAPs.mac_1,\n\t\t\t\t\"powrx\": msg.payload.wifiAPs.rssi_1\n\t\t\t\t};\n}\n\nif (msg.payload.wifiAPs.mac_2) {\n\tdata[\"wlan\"][1] = {\n\t\t\t\t\"mac\": msg.payload.wifiAPs.mac_2,\n\t\t\t\t\"powrx\": msg.payload.wifiAPs.rssi_2\n\t\t\t\t};\n}\n\nif (msg.payload.wifiAPs.mac_3) {\n\tdata[\"wlan\"][2] = {\n\t\t\t\t\"mac\": msg.payload.wifiAPs.mac_3,\n\t\t\t\t\"powrx\": msg.payload.wifiAPs.rssi_3\n\t\t\t\t};\n}\n\nvar msg = {\n            \"method\" : \"POST\",\n            \"url\" : dev_url,\n            \"headers\" : {\n                        \"Content-Type\": \"application/json\"\n                        },\n            \"payload\" : JSON.stringify(data)\n            };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1523,
+        "y": 218,
+        "wires": [
+            [
+                "c3efefbe.f4153"
+            ]
+        ]
+    },
+    {
+        "id": "c3efefbe.f4153",
+        "type": "http request",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1750,
+        "y": 218,
+        "wires": [
+            [
+                "4b76118b.087f"
+            ]
+        ]
+    },
+    {
+        "id": "4b76118b.087f",
+        "type": "json",
+        "z": "58b39156.9dd24",
+        "name": "JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1910,
+        "y": 218,
+        "wires": [
+            [
+                "5b902438.1f10fc"
+            ]
+        ]
+    },
+    {
+        "id": "f67d5afd.d343c8",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "Ask OpenCelliD Geolocation API",
+        "func": "var OpenCelliD_apikey = \"YOUR KEY\";\nvar dev_url = \"https://eu1.unwiredlabs.com/v2/process.php\";\n\nvar data = {\n            \"token\":OpenCelliD_apikey,\n            \"wifi\": [],\n            \"address\":1\n            };\n\nif (msg.payload.wifiAPs.mac_1) {\n\tdata[\"wifi\"][0] = {\n\t\t\t\t\"bssid\": msg.payload.wifiAPs.mac_1,\n\t\t\t\t\"signal\": msg.payload.wifiAPs.rssi_1\n\t\t\t\t};\n}\n\nif (msg.payload.wifiAPs.mac_2) {\n\tdata[\"wifi\"][1] = {\n\t\t\t\t\"bssid\": msg.payload.wifiAPs.mac_2,\n\t\t\t\t\"signal\": msg.payload.wifiAPs.rssi_2\n\t\t\t\t};\n}\n\nif (msg.payload.wifiAPs.mac_3) {\n\tdata[\"wifi\"][2] = {\n\t\t\t\t\"bssid\": msg.payload.wifiAPs.mac_3,\n\t\t\t\t\"signal\": msg.payload.wifiAPs.rssi_3\n\t\t\t\t};\n}\n\nvar msg = {\n            \"method\" : \"POST\",\n            \"url\" : dev_url,\n            \"headers\" : {\n                        \"Content-Type\": \"application/json\"\n                        },\n            \"payload\" : JSON.stringify(data)\n            };\n\nreturn msg;\n\nvar msg = {\n            \"method\" : \"POST\",\n            \"url\" : dev_url,\n            \"headers\" : {\n                        \"Content-Type\": \"application/json\"\n                        },\n            \"payload\" : JSON.stringify(data)\n            };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1530,
+        "y": 276,
+        "wires": [
+            [
+                "1d345eb6.101131"
+            ]
+        ]
+    },
+    {
+        "id": "abca54af.8083c8",
+        "type": "ttn uplink",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "app": "YOUR APP",
+        "dev_id": "",
+        "field": "",
+        "x": 60,
+        "y": 280,
+        "wires": [
+            [
+                "6b6bd3f8.94907c",
+                "fe146c3c.8c0e3",
+                "10605526.d36a7b",
+                "a3a0dc03.c9f8e"
+            ]
+        ]
+    },
+    {
+        "id": "789fbbb3.713194",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "OpencelliD gps",
+        "func": "var msg1 = {};\n// processed with OpenCelliD\nif(msg.payload.status==\"ok\"){\n    \n    msg1.payload = msg.payload;\n    msg1.date = Date().toString();\n    msg1.payload.lon = parseFloat(msg.payload.lon.toFixed(7));\n    msg1.payload.lat = parseFloat(msg.payload.lat.toFixed(7)); \n    msg1.payload.type=\"opencellid\"\n     if (msg.payload.accuracy) {\n        msg1.payload.radius = msg.payload.accuracy;\n        delete msg1.payload.accuracy;\n        delete msg1.payload.wifiAPs;\n    }\n   \n    delete msg1.payload.status;\n    delete msg1.payload.balance;\n\n   \n}\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2080,
+        "y": 276,
+        "wires": [
+            [
+                "f1dd1b0e.aad328",
+                "337a5259.50f61e"
+            ]
+        ]
+    },
+    {
+        "id": "c6aa542c.38faa8",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "Google gps",
+        "func": "var msg1 = {};\n\n\n\nif (msg.payload.location) {\n\n    msg1.payload = msg.payload;\n    msg1.payload.date = Date().toString();\n    msg1.payload.lon = parseFloat(msg.payload.location.lng.toFixed(7));\n    msg1.payload.lat = parseFloat(msg.payload.location.lat.toFixed(7));\n    msg1.payload.type = \"google\"\n    // processed with Google\n    if (msg.payload.accuracy) {\n        msg1.payload.radius = msg.payload.accuracy;\n        delete msg1.payload.accuracy;\n        delete msg1.payload.wifiAPs;\n    }\n  \n    delete msg1.payload.wifiAPs;\n    delete msg1.payload.location;\n}\n\nreturn msg1;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2070,
+        "y": 340,
+        "wires": [
+            [
+                "f1dd1b0e.aad328",
+                "337a5259.50f61e"
+            ]
+        ]
+    },
+    {
+        "id": "fe256c80.2392f",
+        "type": "json",
+        "z": "58b39156.9dd24",
+        "name": "JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1910,
+        "y": 276,
+        "wires": [
+            [
+                "789fbbb3.713194"
+            ]
+        ]
+    },
+    {
+        "id": "b987b302.57a7f",
+        "type": "json",
+        "z": "58b39156.9dd24",
+        "name": "JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1910,
+        "y": 340,
+        "wires": [
+            [
+                "c6aa542c.38faa8"
+            ]
+        ]
+    },
+    {
+        "id": "1d345eb6.101131",
+        "type": "http request",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1750,
+        "y": 276,
+        "wires": [
+            [
+                "fe256c80.2392f"
+            ]
+        ]
+    },
+    {
+        "id": "20c3b4e.7cfd04c",
+        "type": "http request",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1750,
+        "y": 340,
+        "wires": [
+            [
+                "b987b302.57a7f"
+            ]
+        ]
+    },
+    {
+        "id": "337a5259.50f61e",
+        "type": "switch",
+        "z": "58b39156.9dd24",
+        "name": "switch best ",
+        "property": "payload.radius",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "",
+                "vt": "prev"
+            },
+            {
+                "t": "lte",
+                "v": "",
+                "vt": "prev"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 2330,
+        "y": 280,
+        "wires": [
+            [
+                "416035c.91c0ccc",
+                "5742451e.64fb3c",
+                "e9454774.ca6828",
+                "c87a80a7.72473"
+            ],
+            [
+                "416035c.91c0ccc",
+                "5742451e.64fb3c",
+                "e9454774.ca6828",
+                "c87a80a7.72473"
+            ],
+            [
+                "5742451e.64fb3c",
+                "416035c.91c0ccc",
+                "38b778ce.6086b8",
+                "e9454774.ca6828",
+                "c87a80a7.72473"
+            ]
+        ]
+    },
+    {
+        "id": "ca0feff7.292cb",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "Topic Select",
+        "func": "topic=msg.topic.slice(2,4)\ntopic=topic.replace(\"/\",\"\")\nmsg.topic=\"CP\"+topic+\"/status\";\n//msg.topic=\"CP97/status\";\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1710,
+        "y": 680,
+        "wires": [
+            [
+                "2a919563.28041a",
+                "71722802.c5e058",
+                "1ce4d8f7.23f7c7"
+            ]
+        ]
+    },
+    {
+        "id": "63d35335.e950cc",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "Return GPS or LoRa ",
+        "func": "\nif(parseFloat(msg.payload.location.lon)==0 && parseFloat(msg.payload.location.lat)==0  ){\n    if(msg.payload.wifiAPs === null){\n        \n        msg.payload.location.lat=parseFloat(msg.metadata.latitude)\n        msg.payload.location.lon=parseFloat(msg.metadata.longitude)\n        if( isNaN(msg.payload.location.lat) && isNaN(msg.payload.location.lon)){\n            msg.payload.location.lat=0\n            msg.payload.location.lon=0\n            \n        }\n        msg.payload.location.vdop=parseFloat(msg.payload.location.vdop)\n        msg.payload.location.hdop=parseFloat(msg.payload.location.hdop)\n        msg.payload.location.pdop=parseFloat(msg.payload.location.pdop)\n        msg.payload.location.alt=parseFloat(msg.payload.location.alt)\n        if( isNaN(msg.payload.location.vdop) ){\n            msg.payload.location.vdop=0\n        }\n        if( isNaN(msg.payload.location.hdop) ){\n            msg.payload.location.hdop=0\n        }\n        if( isNaN(msg.payload.location.pdop) ){\n            msg.payload.location.pdop=0\n        }\n        if( isNaN(msg.payload.location.alt) ){\n            msg.payload.location.alt=0\n        }\n        delete msg.payload.wifiAPs\n        msg.payload.location.type = \"lora\"\n        msg.topic=msg.dev_id\n        return msg\n    }\nmsg.payload.location.lat=parseFloat(msg.payload.location.lat)\nmsg.payload.location.lon=parseFloat(msg.payload.location.lon)\nmsg.payload.location.vdop=parseFloat(msg.payload.location.vdop)\nmsg.payload.location.hdop=parseFloat(msg.payload.location.hdop)\nmsg.payload.location.pdop=parseFloat(msg.payload.location.pdop)\nmsg.payload.location.alt=parseFloat(msg.payload.location.alt)\n\n if( isNaN(msg.payload.location.vdop) ){\n            msg.payload.location.vdop=0\n        }\n    if( isNaN(msg.payload.location.hdop) ){\n            msg.payload.location.hdop=0\n        }\n    if( isNaN(msg.payload.location.pdop) ){\n            msg.payload.location.pdop=0\n        }\n    if( isNaN(msg.payload.location.alt) ){\n            msg.payload.location.alt=0\n        }\nmsg.payload.location.type = \"wifi\"\nmsg.topic=msg.dev_id\nreturn msg\n    \n        \n}else{\n    msg.payload.location.lat=parseFloat(msg.payload.location.lat)\n    msg.payload.location.lon=parseFloat(msg.payload.location.lon)\n    msg.payload.location.vdop=parseFloat(msg.payload.location.vdop)\n    msg.payload.location.hdop=parseFloat(msg.payload.location.hdop)\n    msg.payload.location.pdop=parseFloat(msg.payload.location.pdop)\n    msg.payload.location.alt=parseFloat(msg.payload.location.alt)\n    if( isNaN(msg.payload.location.vdop) ){\n            msg.payload.location.vdop=0\n        }\n    if( isNaN(msg.payload.location.hdop) ){\n            msg.payload.location.hdop=0\n        }\n    if( isNaN(msg.payload.location.pdop) ){\n            msg.payload.location.pdop=0\n        }\n    if( isNaN(msg.payload.location.alt) ){\n            msg.payload.location.alt=0\n        }\n    delete msg.payload.wifiAPs\n    msg.payload.location.type = \"gps\"\n    msg.topic=msg.dev_id\n    return msg\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 280,
+        "wires": [
+            [
+                "11fe7fe2.4aab2",
+                "49e5af13.102df"
+            ]
+        ]
+    },
+    {
+        "id": "416035c.91c0ccc",
+        "type": "merge",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "timeout": "4",
+        "x": 1310,
+        "y": 680,
+        "wires": [
+            [
+                "dd635c87.d1c59"
+            ]
+        ]
+    },
+    {
+        "id": "3066e2ea.43f13e",
+        "type": "debug",
+        "z": "58b39156.9dd24",
+        "name": "out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 2090,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "11fe7fe2.4aab2",
+        "type": "switch",
+        "z": "58b39156.9dd24",
+        "name": "wifiAps",
+        "property": "payload.wifiAPs",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 860,
+        "y": 280,
+        "wires": [
+            [
+                "800ea4ed.9480f8",
+                "599293df.23631c"
+            ]
+        ]
+    },
+    {
+        "id": "49e5af13.102df",
+        "type": "switch",
+        "z": "58b39156.9dd24",
+        "name": "type",
+        "property": "payload.location.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1070,
+        "y": 680,
+        "wires": [
+            [
+                "416035c.91c0ccc"
+            ]
+        ]
+    },
+    {
+        "id": "a22a9763.d535a8",
+        "type": "debug",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 430,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "2a919563.28041a",
+        "type": "change",
+        "z": "58b39156.9dd24",
+        "name": "trigger msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "control",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "trigger",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 680,
+        "wires": [
+            [
+                "6b6bd3f8.94907c"
+            ]
+        ]
+    },
+    {
+        "id": "6b6bd3f8.94907c",
+        "type": "q-gate",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "controlTopic": "control",
+        "defaultState": "queueing",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "queueCmd": "queue",
+        "defaultCmd": "default",
+        "triggerCmd": "trigger",
+        "flushCmd": "flush",
+        "resetCmd": "reset",
+        "maxQueueLength": "1000",
+        "keepNewest": false,
+        "qToggle": true,
+        "persist": false,
+        "x": 470,
+        "y": 280,
+        "wires": [
+            [
+                "63d35335.e950cc",
+                "5742451e.64fb3c",
+                "32c0a3e6.b0813c"
+            ]
+        ]
+    },
+    {
+        "id": "f1dd1b0e.aad328",
+        "type": "merge",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "timeout": "1",
+        "x": 2270,
+        "y": 420,
+        "wires": [
+            [
+                "9342343a.e33bd8"
+            ]
+        ]
+    },
+    {
+        "id": "6ecb6819.3a2118",
+        "type": "switch",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "property": "payload[1].payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "undefined",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 2510,
+        "y": 420,
+        "wires": [
+            [
+                "4b0dcb39.377524"
+            ]
+        ]
+    },
+    {
+        "id": "599293df.23631c",
+        "type": "msg-router",
+        "z": "58b39156.9dd24",
+        "routerType": "roundrobin",
+        "topicDependent": false,
+        "counterReset": false,
+        "msgKeyField": "payload",
+        "undefinedHash": false,
+        "outputsInfo": [
+            {
+                "active": true,
+                "clone": false,
+                "delay": "0",
+                "weight": "3"
+            },
+            {
+                "active": true,
+                "clone": false,
+                "delay": "0",
+                "weight": "2"
+            },
+            {
+                "active": true,
+                "clone": false,
+                "delay": "0",
+                "weight": "1"
+            }
+        ],
+        "name": "Round Robin (HO,HG,OG)",
+        "delaying": "unrelated",
+        "msgControl": false,
+        "outputs": 3,
+        "x": 1220,
+        "y": 280,
+        "wires": [
+            [
+                "17d2ae21.fe3942",
+                "f67d5afd.d343c8"
+            ],
+            [
+                "17d2ae21.fe3942",
+                "5cc98c53.d78354"
+            ],
+            [
+                "f67d5afd.d343c8",
+                "5cc98c53.d78354"
+            ]
+        ]
+    },
+    {
+        "id": "800ea4ed.9480f8",
+        "type": "q-gate",
+        "z": "58b39156.9dd24",
+        "name": "q-resend",
+        "controlTopic": "control",
+        "defaultState": "queueing",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "queueCmd": "queue",
+        "defaultCmd": "default",
+        "triggerCmd": "trigger",
+        "flushCmd": "flush",
+        "resetCmd": "reset",
+        "maxQueueLength": "6",
+        "keepNewest": false,
+        "qToggle": false,
+        "persist": false,
+        "x": 1018,
+        "y": 358,
+        "wires": [
+            [
+                "599293df.23631c"
+            ]
+        ]
+    },
+    {
+        "id": "5742451e.64fb3c",
+        "type": "change",
+        "z": "58b39156.9dd24",
+        "name": "reset",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "control",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "reset",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 360,
+        "wires": [
+            [
+                "800ea4ed.9480f8"
+            ]
+        ]
+    },
+    {
+        "id": "4b0dcb39.377524",
+        "type": "change",
+        "z": "58b39156.9dd24",
+        "name": "trigger",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "control",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "trigger",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 420,
+        "wires": [
+            [
+                "800ea4ed.9480f8"
+            ]
+        ]
+    },
+    {
+        "id": "dd635c87.d1c59",
+        "type": "function",
+        "z": "58b39156.9dd24",
+        "name": "join wifi location",
+        "func": "\nif(msg.payload[0].payload.location.lat==0 && msg.payload[0].payload.location.lon==0  ){\n\nif(msg.payload[2]){\n     \n    msg.payload[0].payload.location.lat=msg.payload[2].payload.lat;\n    msg.payload[0].payload.location.lon=msg.payload[2].payload.lon;\n    msg.payload[0].payload.location.type=msg.payload[2].payload.type\n    msg.payload[0].payload.location.accuracy=msg.payload[2].payload.radius\n    delete msg.payload[0].payload.wifiAPs;\n    delete msg.payload[2].payload.wifiAPs;\n    msg=msg.payload[0];\n    return msg;\n    \n\n}else{\nif(msg.payload[1]) {   \n     \n    msg.payload[0].payload.location.lat=msg.payload[1].payload.lat;\n    msg.payload[0].payload.location.lon=msg.payload[1].payload.lon;\n    delete msg.payload[0].payload.wifiAPs;\n    delete msg.payload[1].payload.wifiAPs;\n    msg.payload[0].payload.location.type=msg.payload[1].payload.type\n    msg.payload[0].payload.location.accuracy=msg.payload[1].payload.radius\n    msg=msg.payload[0];\n    return msg;\n    \n}else {\n\nif(msg.payload[0].payload.location.type===\"lora\"){\ndelete msg.payload[0].payload.wifiAPs;\nmsg=msg.payload[0];\nreturn msg;\n}\nmsg.payload[0].payload.location.type=\"gps\"\ndelete msg.payload[0].payload.wifiAPs;\nmsg=msg.payload[0];\nreturn msg;\n}\n\n\n}\n\n\n\n\n}else\nif(msg.payload[0].payload.location.type===\"lora\"){\ndelete msg.payload[0].payload.wifiAPs;\nmsg=msg.payload[0];\nreturn msg;\n}\n\nmsg.payload[0].payload.location.type=\"gps\"\ndelete msg.payload[0].payload.wifiAPs;\nmsg=msg.payload[0];\nreturn msg;\n\n\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1500,
+        "y": 680,
+        "wires": [
+            [
+                "ca0feff7.292cb"
+            ]
+        ]
+    },
+    {
+        "id": "b51d7c02.0a34d",
+        "type": "change",
+        "z": "58b39156.9dd24",
+        "name": "set ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "control",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "6b6bd3f8.94907c"
+            ]
+        ]
+    },
+    {
+        "id": "71722802.c5e058",
+        "type": "Message Counter",
+        "z": "58b39156.9dd24",
+        "name": "msg count out",
+        "units": "minutes",
+        "interval": 1,
+        "alignToClock": true,
+        "generator": "external",
+        "x": 1920,
+        "y": 760,
+        "wires": [
+            [
+                "3066e2ea.43f13e"
+            ],
+            [
+                "3066e2ea.43f13e",
+                "92f27f04.1498a"
+            ]
+        ]
+    },
+    {
+        "id": "fe146c3c.8c0e3",
+        "type": "Message Counter",
+        "z": "58b39156.9dd24",
+        "name": "msg count in",
+        "units": "hours",
+        "interval": "1201",
+        "alignToClock": true,
+        "generator": "external",
+        "x": 250,
+        "y": 220,
+        "wires": [
+            [
+                "a22a9763.d535a8"
+            ],
+            [
+                "a22a9763.d535a8",
+                "5bb72732.f7f528"
+            ]
+        ]
+    },
+    {
+        "id": "32c0a3e6.b0813c",
+        "type": "delay",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 640,
+        "y": 420,
+        "wires": [
+            [
+                "4b0dcb39.377524"
+            ]
+        ]
+    },
+    {
+        "id": "38b778ce.6086b8",
+        "type": "delay",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1160,
+        "y": 420,
+        "wires": [
+            [
+                "416035c.91c0ccc"
+            ]
+        ]
+    },
+    {
+        "id": "10605526.d36a7b",
+        "type": "link out",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "links": [
+            "7f75e945.acb158",
+            "dbbfc217.2672f"
+        ],
+        "x": 195,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a3a0dc03.c9f8e",
+        "type": "trigger",
+        "z": "58b39156.9dd24",
+        "op1": "trigger",
+        "op2": "",
+        "op1type": "str",
+        "op2type": "nul",
+        "duration": "10",
+        "extend": true,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "name": "low rate",
+        "x": 200,
+        "y": 400,
+        "wires": [
+            [
+                "b51d7c02.0a34d"
+            ]
+        ]
+    },
+    {
+        "id": "e9454774.ca6828",
+        "type": "Message Counter",
+        "z": "58b39156.9dd24",
+        "name": "API counter",
+        "units": "minutes",
+        "interval": 1,
+        "alignToClock": true,
+        "generator": "external",
+        "x": 2550,
+        "y": 280,
+        "wires": [
+            [],
+            [
+                "9a858872.7bd368"
+            ]
+        ]
+    },
+    {
+        "id": "5bb72732.f7f528",
+        "type": "link out",
+        "z": "58b39156.9dd24",
+        "name": "LoRa in",
+        "links": [
+            "12a8b0ca.2cea6f",
+            "b65815f1.a3de68"
+        ],
+        "x": 393,
+        "y": 228,
+        "wires": []
+    },
+    {
+        "id": "92f27f04.1498a",
+        "type": "link out",
+        "z": "58b39156.9dd24",
+        "name": "LoRa out",
+        "links": [
+            "324650c6.6acc"
+        ],
+        "x": 2055,
+        "y": 765,
+        "wires": []
+    },
+    {
+        "id": "9a858872.7bd368",
+        "type": "link out",
+        "z": "58b39156.9dd24",
+        "name": "LoRa API",
+        "links": [
+            "bbca4374.622af"
+        ],
+        "x": 2675,
+        "y": 286,
+        "wires": []
+    },
+    {
+        "id": "c87a80a7.72473",
+        "type": "debug",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2560,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "9342343a.e33bd8",
+        "type": "switch",
+        "z": "58b39156.9dd24",
+        "name": "",
+        "property": "payload[0].payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "undefined",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 2390,
+        "y": 420,
+        "wires": [
+            [
+                "6ecb6819.3a2118"
+            ]
+        ]
+    },
+    {
+        "id": "b8a92245.2761f",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "YOUR BROKER",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "cb4214ae.e775b8",
+        "type": "ttn app",
+        "z": "",
+        "appId": "YOUR APP",
+        "accessKey": "YOUR KEY",
+        "discovery": "discovery.thethingsnetwork.org:1900"
+    }
+]
