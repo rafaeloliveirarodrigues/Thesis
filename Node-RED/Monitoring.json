@@ -1,0 +1,503 @@
+[
+    {
+        "id": "304347bb.c65ab8",
+        "type": "tab",
+        "label": "Monitoring",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9bad2104.663c9",
+        "type": "e-mail",
+        "z": "304347bb.c65ab8",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "e-mail@out.com",
+        "dname": "email out",
+        "x": 1271,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "389436c7.ac979a",
+        "type": "function",
+        "z": "304347bb.c65ab8",
+        "name": "Email",
+        "func": "msg ={\n    \n    payload:msg.payload,\n    topic:\"Node-RED\"\n\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1111,
+        "y": 280,
+        "wires": [
+            [
+                "2804377e.e29508",
+                "9bad2104.663c9"
+            ]
+        ]
+    },
+    {
+        "id": "2804377e.e29508",
+        "type": "debug",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1263,
+        "y": 328,
+        "wires": []
+    },
+    {
+        "id": "5fdf8ccf.0295a4",
+        "type": "Message Counter",
+        "z": "304347bb.c65ab8",
+        "name": "Lora In",
+        "units": "hours",
+        "interval": "24",
+        "alignToClock": true,
+        "generator": "internal",
+        "x": 412,
+        "y": 120,
+        "wires": [
+            [
+                "101a6947.019a37"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1b6294ca.00b58b",
+        "type": "Message Counter",
+        "z": "304347bb.c65ab8",
+        "name": "Lora out",
+        "units": "hours",
+        "interval": "24",
+        "alignToClock": true,
+        "generator": "internal",
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [
+                "101a6947.019a37"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bc600819.edb718",
+        "type": "Message Counter",
+        "z": "304347bb.c65ab8",
+        "name": "Other In",
+        "units": "hours",
+        "interval": "24",
+        "alignToClock": true,
+        "generator": "internal",
+        "x": 420,
+        "y": 340,
+        "wires": [
+            [
+                "a6d25473.2f93e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8115d64c.ad1c88",
+        "type": "Message Counter",
+        "z": "304347bb.c65ab8",
+        "name": "Other out",
+        "units": "hours",
+        "interval": "24",
+        "alignToClock": true,
+        "generator": "internal",
+        "x": 420,
+        "y": 460,
+        "wires": [
+            [
+                "a6d25473.2f93e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "101a6947.019a37",
+        "type": "merge",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "timeout": "20",
+        "x": 610,
+        "y": 174,
+        "wires": [
+            [
+                "66f4e62c.435528",
+                "5fab36d6.021be8"
+            ]
+        ]
+    },
+    {
+        "id": "66f4e62c.435528",
+        "type": "function",
+        "z": "304347bb.c65ab8",
+        "name": "LoRa email",
+        "func": "\nvar cout=msg.payload[0].payload;\nvar capi=msg.payload[1].payload;\nvar cin=msg.payload[2].payload;\nmsg ={\n    \n    payload:\"Lora Counter, \"+Date().toString()+\", LoRa in: \"+ cin+\", LoRa out: \"+cout+\", Lora API :\"+capi+\", Lora API undefined: \"+ (capi-cin)+\", LoRa In-Out: \"+(cin-cout)\n\n\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910,
+        "y": 174,
+        "wires": [
+            [
+                "76713ee2.37134",
+                "389436c7.ac979a"
+            ]
+        ]
+    },
+    {
+        "id": "b37baac0.8cbaf8",
+        "type": "Message Counter",
+        "z": "304347bb.c65ab8",
+        "name": "Lora API",
+        "units": "hours",
+        "interval": "24",
+        "alignToClock": true,
+        "generator": "internal",
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "101a6947.019a37"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "87ae7c28.3dc11",
+        "type": "Message Counter",
+        "z": "304347bb.c65ab8",
+        "name": "Other API",
+        "units": "hours",
+        "interval": "24",
+        "alignToClock": true,
+        "generator": "internal",
+        "x": 420,
+        "y": 400,
+        "wires": [
+            [
+                "a6d25473.2f93e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "97d39cc9.b53a2",
+        "type": "delay",
+        "z": "304347bb.c65ab8",
+        "name": "2s",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "5fdf8ccf.0295a4"
+            ]
+        ]
+    },
+    {
+        "id": "a6d25473.2f93e8",
+        "type": "merge",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "timeout": "20",
+        "x": 610,
+        "y": 400,
+        "wires": [
+            [
+                "344850cf.27d28",
+                "5fab36d6.021be8"
+            ]
+        ]
+    },
+    {
+        "id": "344850cf.27d28",
+        "type": "function",
+        "z": "304347bb.c65ab8",
+        "name": "Other email",
+        "func": "\nvar cout=msg.payload[0].payload;\nvar capi=msg.payload[1].payload;\nvar cin=msg.payload[2].payload;\nmsg ={\n    \n    payload:\"Other Counter, \"+Date().toString()+\", Other in: \"+ cin+\", Other out: \"+cout+\", Other API :\"+capi+\", Other API undefined: \"+ (cin-capi)+\", Other In-Out: \"+(cin-cout)\n\n\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 400,
+        "wires": [
+            [
+                "8dd30170.4b241",
+                "4353aa43.3e9b64"
+            ]
+        ]
+    },
+    {
+        "id": "76713ee2.37134",
+        "type": "debug",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1133,
+        "y": 174,
+        "wires": []
+    },
+    {
+        "id": "55208ee1.50ab2",
+        "type": "delay",
+        "z": "304347bb.c65ab8",
+        "name": "1s",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "b37baac0.8cbaf8"
+            ]
+        ]
+    },
+    {
+        "id": "f2d903dd.2497a",
+        "type": "delay",
+        "z": "304347bb.c65ab8",
+        "name": "1s",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "87ae7c28.3dc11"
+            ]
+        ]
+    },
+    {
+        "id": "7f63fdd8.62c804",
+        "type": "delay",
+        "z": "304347bb.c65ab8",
+        "name": "2s",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 250,
+        "y": 340,
+        "wires": [
+            [
+                "bc600819.edb718"
+            ]
+        ]
+    },
+    {
+        "id": "324650c6.6acc",
+        "type": "link in",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "links": [
+            "92f27f04.1498a"
+        ],
+        "x": 95,
+        "y": 240,
+        "wires": [
+            [
+                "1b6294ca.00b58b"
+            ]
+        ]
+    },
+    {
+        "id": "bbca4374.622af",
+        "type": "link in",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "links": [
+            "9a858872.7bd368"
+        ],
+        "x": 96,
+        "y": 180,
+        "wires": [
+            [
+                "55208ee1.50ab2"
+            ]
+        ]
+    },
+    {
+        "id": "b65815f1.a3de68",
+        "type": "link in",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "links": [
+            "5bb72732.f7f528"
+        ],
+        "x": 95,
+        "y": 120,
+        "wires": [
+            [
+                "97d39cc9.b53a2"
+            ]
+        ]
+    },
+    {
+        "id": "92969427.e3de68",
+        "type": "link in",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "links": [
+            "ca6eae85.c7cfd"
+        ],
+        "x": 95,
+        "y": 340,
+        "wires": [
+            [
+                "7f63fdd8.62c804"
+            ]
+        ]
+    },
+    {
+        "id": "86b12c22.260a1",
+        "type": "link in",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "links": [
+            "e7d982d8.688f4"
+        ],
+        "x": 95,
+        "y": 400,
+        "wires": [
+            [
+                "f2d903dd.2497a"
+            ]
+        ]
+    },
+    {
+        "id": "d728e184.5a05c",
+        "type": "link in",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "links": [
+            "ef510b21.494508"
+        ],
+        "x": 95,
+        "y": 460,
+        "wires": [
+            [
+                "8115d64c.ad1c88"
+            ]
+        ]
+    },
+    {
+        "id": "8dd30170.4b241",
+        "type": "debug",
+        "z": "304347bb.c65ab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1130,
+        "y": 398,
+        "wires": []
+    },
+    {
+        "id": "4353aa43.3e9b64",
+        "type": "delay",
+        "z": "304347bb.c65ab8",
+        "name": "10s",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 950,
+        "y": 345,
+        "wires": [
+            [
+                "389436c7.ac979a"
+            ]
+        ]
+    },
+    {
+        "id": "ace44264.436d3",
+        "type": "twilio out",
+        "z": "304347bb.c65ab8",
+        "twilio": "815b33d8.a09d4",
+        "twilioType": "sms",
+        "url": "",
+        "number": "",
+        "name": "twilio out",
+        "x": 957,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "5fab36d6.021be8",
+        "type": "function",
+        "z": "304347bb.c65ab8",
+        "name": "Send SMS",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 799,
+        "y": 280,
+        "wires": [
+            [
+                "ace44264.436d3"
+            ]
+        ]
+    },
+    {
+        "id": "815b33d8.a09d4",
+        "type": "twilio-api",
+        "z": "",
+        "name": "",
+        "sid": "qw",
+        "from": "qw"
+    }
+]

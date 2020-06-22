@@ -455,7 +455,7 @@ journal = {Journal of Navigation},
 keywords = {Satellite navigation},
 number = {2},
 pages = {175--182},
-title = {{The glonass Systemâ€” An Overview}},
+title = {{The glonass System An Overview}},
 volume = {45},
 year = {1992}
 }
@@ -534,11 +534,78 @@ year = {2018}
 
 
 %end Geolocation
+
+%Related Work
+
+
+@article{Tabbakha2018,
+abstract = {This paper presents an indoor positioning system (IPS) and motion tracking system for the elderly, who are staying alone. The system is able to track the elderly location based on the room that they are currently situated and recognizes whether the elderly is moving or sitting. A smart wearable device featuring MPU6050 motion sensor, BLE beacon and Raspberry Pi Zero W is developed. The sensory data from MPU6050 will be analyzed to study the type of motion and publish to MQTT server. For location tracking, multiple Raspberry Pi 3 are used as BLE beacon scanners to scan for the beacon and publish its signal strength to an MQTT server. The datasets for the indoor location and motion type have also been developed in this research work. Weka, a machine learning software is used to evaluate and determine the most suitable classifier. The machine learning technique was implemented in Python programming language using scikit-learn, matplotlib, numpy and SciPy packages. The results are then pushed to an Internet of Things (IoT) platform for remote monitoring. The accuracy rate is 99{\%} for the location tracking and 99.97{\%} for motion recognition.},
+author = {Tabbakha, Nour Eddin and Tan, Wooi Haw and Ooi, Chee Pun},
+doi = {10.1109/ICORAS.2017.8308073},
+isbn = {9781538619087},
+journal = {Proceeding of 2017 International Conference on Robotics, Automation and Sciences, ICORAS 2017},
+keywords = {Assisted living,Internet of Things,indoor positioning system,machine learning,motion tracking},
+number = {September 2019},
+pages = {1--4},
+title = {{Indoor location and motion tracking system for elderly assisted living home}},
+volume = {2018-March},
+year = {2018}
+}
+
+
+@inproceedings{Fargas2017RL1,
+abstract = {Internet of Things (IoT) has been growing over the last few years in multiple applications and due to a growing need for geolocation and tracking capabilities, an innovative opportunity arises. Whereas geolocation is traditionally based on GPS units this paper reports on a design and implementation of a LoRaWAN tracking system which is capable exploiting transmitted packages to calculate the current position without the use of GPS or GSM. This is done using the low power technology LoRa where the geolocation is calculated applying a multilateration algorithm on the gateways timestamps from received packages. The whole system consisted of an end-node, four gateways, a server and a java application to store the obtained data in a MySQL database.},
+author = {Fargas, Bernat Carbones and Petersen, Martin Nordal},
+booktitle = {GIoTS 2017 - Global Internet of Things Summit, Proceedings},
+doi = {10.1109/GIOTS.2017.8016251},
+isbn = {9781509058730},
+keywords = {IoT,LoRaWAN,TDOA,geolocation},
+month = {8},
+publisher = {Institute of Electrical and Electronics Engineers Inc.},
+title = {{GPS-free geolocation using LoRa in low-power WANs}},
+year = {2017}
+}
+@article{Aernouts2018RL2,
+abstract = {Because of the increasing relevance of the Internet of Things and location-based services, researchers are evaluating wireless positioning techniques, such as fingerprinting, on Low Power Wide Area Network (LPWAN) communication. In order to evaluate fingerprinting in large outdoor environments, extensive, time-consuming measurement campaigns need to be conducted to create useful datasets. This paper presents three LPWAN datasets which are collected in large-scale urban and rural areas. The goal is to provide the research community with a tool to evaluate fingerprinting algorithms in large outdoor environments. During a period of three months, numerous mobile devices periodically obtained location data via a GPS receiver which was transmitted via a Sigfox or LoRaWAN message. Together with network information, this location data is stored in the appropriate LPWAN dataset. The first results of our basic fingerprinting implementation, which is also clarified in this paper, indicate a mean location estimation error of 214.58 m for the rural Sigfox dataset, 688.97 m for the urban Sigfox dataset and 398.40 m for the urban LoRaWAN dataset. In the future, we will enlarge our current datasets and use them to evaluate and optimize our fingerprinting methods. Also, we intend to collect additional datasets for Sigfox, LoRaWAN and NB-IoT.},
+author = {Aernouts, Michiel and Berkvens, Rafael and {Van Vlaenderen}, Koen and Weyn, Maarten},
+doi = {10.3390/data3020013},
+issn = {23065729},
+journal = {Data},
+keywords = {Fingerprinting,IoT,LPWAN,LoRaWAN,Localization,Sigfox},
+number = {2},
+pages = {1--15},
+title = {{Sigfox and LoRaWAN datasets for fingerprint localization in large urban and rural areas}},
+volume = {3},
+year = {2018}
+}
+
+
+
+@misc{RL3,
+title = {{MicroPython {\&} {\#}WiPy 2.0/3.0: Geolocation using WLAN - LeMaRiva|tech}},
+url = {https://lemariva.com/blog/2017/11/micropython-wipy2-0-geolocalization-using-wlan},
+urldate = {2020-01-05}
+}
+@article{DSouza2012RL4,
+abstract = {Dementia is highly prevalent among the older population. Most patients with dementia are admitted to an aged care facility due to wandering behaviour which tends to result in dangerous scenarios such as straying away from the facility and being seriously injured. Due to the decreasing availability of carers in aged care, there is a need to prioritise monitoring of patients that have a severe case of wondering. The challenge is to allow carers to monitor the status of such patients in terms of position localisation and motion behavioural status, in real-time. The long term behavioural analysis of such patients would allow carers to better manage such patients. Current indoor localisation technologies cannot provide the accuracy of location and motion to enable unobtrusive behavioural analysis. Our aim was to develop an indoor localisation and activity monitoring system for aged care workers to aid the prioritisation of surveillance to the patients with dementia. Our system used Radio Frequency tracking combined with motion and heading sensors to track a person. The motion and heading sensor information were incorporated into a human activity classification model to determine the characteristics of a patient's walking activity. We conducted a month-long trial of our localisation network and activity monitoring system in an aged care facility.},
+author = {D'souza, Matthew and Ros, Montserrat and Karunanithi, Mohanraj},
+file = {:C$\backslash$:/Users/rafae/Desktop/Tese/papers/wireless location/fulltext (1).pdf:pdf;:C$\backslash$:/Users/rafae/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/D'souza, Ros, Karunanithi - 2012 - An Indoor Localisation and Motion Monitoring System to Determine Behavioural Activity in Dementia Aff.pdf:pdf},
+issn = {14464381},
+journal = {Electronic Journal of Health Informatics},
+keywords = {Aged Care,Aged care,E-Health,Localisation,Wireless Sensor Networks,Wireless Sensor networks},
+number = {2},
+pages = {14},
+title = {{An indoor localisation and motion monitoring system to determine behavioural activity in dementia afflicted patients in aged care}},
+url = {www.eJHI.net},
+volume = {7},
+year = {2012}
+}
 %end chapter2
 
 
+%chapter 3
+%end chapter 3
 %chapter 4
-
 @misc{Pytrack,
 title = {{Pytrack - Pycom}},
 url = {https://pycom.io/product/pytrack/},
@@ -616,76 +683,12 @@ url = {https://www.loracloud.com/documentation/geolocation},
 urldate = {2019-11-16}
 }
 
-%Related Work
-
-
-@article{Tabbakha2018,
-abstract = {This paper presents an indoor positioning system (IPS) and motion tracking system for the elderly, who are staying alone. The system is able to track the elderly location based on the room that they are currently situated and recognizes whether the elderly is moving or sitting. A smart wearable device featuring MPU6050 motion sensor, BLE beacon and Raspberry Pi Zero W is developed. The sensory data from MPU6050 will be analyzed to study the type of motion and publish to MQTT server. For location tracking, multiple Raspberry Pi 3 are used as BLE beacon scanners to scan for the beacon and publish its signal strength to an MQTT server. The datasets for the indoor location and motion type have also been developed in this research work. Weka, a machine learning software is used to evaluate and determine the most suitable classifier. The machine learning technique was implemented in Python programming language using scikit-learn, matplotlib, numpy and SciPy packages. The results are then pushed to an Internet of Things (IoT) platform for remote monitoring. The accuracy rate is 99{\%} for the location tracking and 99.97{\%} for motion recognition.},
-author = {Tabbakha, Nour Eddin and Tan, Wooi Haw and Ooi, Chee Pun},
-doi = {10.1109/ICORAS.2017.8308073},
-isbn = {9781538619087},
-journal = {Proceeding of 2017 International Conference on Robotics, Automation and Sciences, ICORAS 2017},
-keywords = {Assisted living,Internet of Things,indoor positioning system,machine learning,motion tracking},
-number = {September 2019},
-pages = {1--4},
-title = {{Indoor location and motion tracking system for elderly assisted living home}},
-volume = {2018-March},
-year = {2018}
-}
-
-
-@inproceedings{Fargas2017RL1,
-abstract = {Internet of Things (IoT) has been growing over the last few years in multiple applications and due to a growing need for geolocation and tracking capabilities, an innovative opportunity arises. Whereas geolocation is traditionally based on GPS units this paper reports on a design and implementation of a LoRaWAN tracking system which is capable exploiting transmitted packages to calculate the current position without the use of GPS or GSM. This is done using the low power technology LoRa where the geolocation is calculated applying a multilateration algorithm on the gateways timestamps from received packages. The whole system consisted of an end-node, four gateways, a server and a java application to store the obtained data in a MySQL database.},
-author = {Fargas, Bernat Carbones and Petersen, Martin Nordal},
-booktitle = {GIoTS 2017 - Global Internet of Things Summit, Proceedings},
-doi = {10.1109/GIOTS.2017.8016251},
-isbn = {9781509058730},
-keywords = {IoT,LoRaWAN,TDOA,geolocation},
-month = {8},
-publisher = {Institute of Electrical and Electronics Engineers Inc.},
-title = {{GPS-free geolocation using LoRa in low-power WANs}},
-year = {2017}
-}
-@article{Aernouts2018RL2,
-abstract = {Because of the increasing relevance of the Internet of Things and location-based services, researchers are evaluating wireless positioning techniques, such as fingerprinting, on Low Power Wide Area Network (LPWAN) communication. In order to evaluate fingerprinting in large outdoor environments, extensive, time-consuming measurement campaigns need to be conducted to create useful datasets. This paper presents three LPWAN datasets which are collected in large-scale urban and rural areas. The goal is to provide the research community with a tool to evaluate fingerprinting algorithms in large outdoor environments. During a period of three months, numerous mobile devices periodically obtained location data via a GPS receiver which was transmitted via a Sigfox or LoRaWAN message. Together with network information, this location data is stored in the appropriate LPWAN dataset. The first results of our basic fingerprinting implementation, which is also clarified in this paper, indicate a mean location estimation error of 214.58 m for the rural Sigfox dataset, 688.97 m for the urban Sigfox dataset and 398.40 m for the urban LoRaWAN dataset. In the future, we will enlarge our current datasets and use them to evaluate and optimize our fingerprinting methods. Also, we intend to collect additional datasets for Sigfox, LoRaWAN and NB-IoT.},
-author = {Aernouts, Michiel and Berkvens, Rafael and {Van Vlaenderen}, Koen and Weyn, Maarten},
-doi = {10.3390/data3020013},
-issn = {23065729},
-journal = {Data},
-keywords = {Fingerprinting,IoT,LPWAN,LoRaWAN,Localization,Sigfox},
-number = {2},
-pages = {1--15},
-title = {{Sigfox and LoRaWAN datasets for fingerprint localization in large urban and rural areas}},
-volume = {3},
-year = {2018}
-}
 
 
 
-@misc{RL3,
-title = {{MicroPython {\&} {\#}WiPy 2.0/3.0: Geolocation using WLAN - LeMaRiva|tech}},
-url = {https://lemariva.com/blog/2017/11/micropython-wipy2-0-geolocalization-using-wlan},
-urldate = {2020-01-05}
-}
-@article{DSouza2012RL4,
-abstract = {Dementia is highly prevalent among the older population. Most patients with dementia are admitted to an aged care facility due to wandering behaviour which tends to result in dangerous scenarios such as straying away from the facility and being seriously injured. Due to the decreasing availability of carers in aged care, there is a need to prioritise monitoring of patients that have a severe case of wondering. The challenge is to allow carers to monitor the status of such patients in terms of position localisation and motion behavioural status, in real-time. The long term behavioural analysis of such patients would allow carers to better manage such patients. Current indoor localisation technologies cannot provide the accuracy of location and motion to enable unobtrusive behavioural analysis. Our aim was to develop an indoor localisation and activity monitoring system for aged care workers to aid the prioritisation of surveillance to the patients with dementia. Our system used Radio Frequency tracking combined with motion and heading sensors to track a person. The motion and heading sensor information were incorporated into a human activity classification model to determine the characteristics of a patient's walking activity. We conducted a month-long trial of our localisation network and activity monitoring system in an aged care facility.},
-author = {D'souza, Matthew and Ros, Montserrat and Karunanithi, Mohanraj},
-file = {:C$\backslash$:/Users/rafae/Desktop/Tese/papers/wireless location/fulltext (1).pdf:pdf;:C$\backslash$:/Users/rafae/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/D'souza, Ros, Karunanithi - 2012 - An Indoor Localisation and Motion Monitoring System to Determine Behavioural Activity in Dementia Aff.pdf:pdf},
-issn = {14464381},
-journal = {Electronic Journal of Health Informatics},
-keywords = {Aged Care,Aged care,E-Health,Localisation,Wireless Sensor Networks,Wireless Sensor networks},
-number = {2},
-pages = {14},
-title = {{An indoor localisation and motion monitoring system to determine behavioural activity in dementia afflicted patients in aged care}},
-url = {www.eJHI.net},
-volume = {7},
-year = {2012}
-}
 
 
 
-%end chapter3
-% chapter4 
 @misc{githubcode,
 title = {{jms-calado/Pycom}},
 url = {https://github.com/jms-calado/Pycom},
