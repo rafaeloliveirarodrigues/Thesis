@@ -8,18 +8,22 @@
 %% Tests Realized
 %% My part is in this part of the data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%  Start Results  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{Results}
 \label{cha:Results}
-This chapter will cover the results of the system.  It will start by explaining the used Methodology, followed by the presentation of the use case where this thesis is integrated.
-Then the geolocation, communication resilience and power results, are presented to the reader, concluding with the validation of the system, and a discussion of the obtained results.
+This chapter will cover the results of the system.  It will start by explaining the used Methodology, followed by the presentation of the use cases where this thesis is integrated.
+Then the geolocation, communication resilience and power results, are presented to the reader, concluding with the a comparison, and a discussion of the obtained results.
+
+%%%%%%%%%%%%%%%%%%%%%%  Start Methodology %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Methodology}
 \label{sec:methodology}
 %%%PAPER
 %%%<Describe shortly HOW you did address the problem. List a few of key existing scientific/technical achievements/solutions/theories/surveys you will rely upon in addressing the problem.>
+%%%
 
-
-%%%%%%%%%%%%%%%%%%%
 To respond to the  presented  research question, this work explains the development of an Adaptive Geolocation Solver model, capable of autonomously decide the best location method. To reach a model able of the mentioned autonomous feature, it must address distinct variables as remaining battery and the availability of communication technologies. This availability can be analyzed through advanced sensing of the surrounding radio signals. This means that the model has to be aware of the environment in which the device is working. The environment main characteristic relates to indoor or outdoor and rural or urban. 
 These characteristics have a direct impact on what kind of technology, has to be used in each working moment for each environment. Thus, the final idea is to define a model that responds to all of these situations, and consequently develop a correspondent profile-based decision system capable to respond to each situation.
 
@@ -27,48 +31,46 @@ These characteristics have a direct impact on what kind of technology, has to be
 For the development of the profile-based decision system, tests were conducted into two different environments urban and rural. Thus these tests used geolocation technologies such as GNSS, Wi-Fi and LoRa.
 Furthermore, these tests will consist of the gathering information from different location coordinates, at different speeds as well as stationary, to evaluate the performance of the different technologies against each other. 
 
-In addition, these tests were integrated into the Carelink project. It was used a geo-fencing polygon, previously defined by the carer of the~\gls{PwD} in the Carelink platform. Consequently, the device communicates with the platform to give its position and receive support on the technologies to
-use accordingly to the profiles of the respective~\gls{PwD}. Thus, in the end, these tests were conducted with real patients in real life trials. To perform this communication between the devices and the Carelink platform it was utilised LoRa and NB-IoT.
-
-% section methodology(end)
+In addition, these tests were integrated into the Carelink project. It was used a geo-fencing polygon, previously defined by the carer of the~\gls{PwD} in the Carelink platform. Consequently, the device communicates with the platform to give its position and receive support on the technologies to use accordingly to the profiles of the respective~\gls{PwD}. Thus, in the end, these tests were conducted with real patients in real life trials. To perform this communication between the devices and the Carelink platform it was utilised LoRa and NB-IoT.
 
 
+%%%%%%%%%%%%%%%%%%%%  Section Methodology (end) %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%  Section Material %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Material}
 \label{subsec:material}
 In order to conduct the tests of this work, it was selected $5$ FiPy devices, used in the belt  box format. That were used by the participants. 
 The remaining material needed was a LoRa Gateway to ensure the coverage of LoRa signal, and a laptop to analyse the data.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%  Section Material (end) %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%  Section Participants %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Participants}
 \label{subsec:Participants}
-The participants in this experiment were $n$, later in this chapter will describe two different environments, where the tests took place. The participant for the first environment is male 24 and does not have dementia. In the second environment, the first tests were conducted by two participants both male one with 24 other with 60 both without dementia. When these tests were concluded, the final ones were conducted with $n$ persons with dementia, $n$ male $n$ female with ages from $n$ to $n$.
+The participants in this experiment were $6$, later in this chapter will describe three different environments, where the tests took place. The participant for the first environment is male 24 and does not have dementia. In the second environment, the first tests were conducted by two participants both male one with 24 other with 60 both without dementia. When these tests were concluded, the final ones were conducted with $4$ persons with dementia, $n$ male $n$ female with ages from $n$ to $n$.
 
+%%%%%%%%%%%%%%%%%%%%%  Section Participants (end) %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%  Section Procedure  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Procedure}
 \label{subsec:Procedure}
-The adopted procedure for this work, during the development phase, was first used a FiPy and each location method was tested individually, and then each communication method, later this was all combined. In the real-world test, phase was given one device to each participant to use during the day. The data from these tests were then analysed.
+The adopted procedure for this work, during the development phase, was first used a FiPy and each location method was tested individually, and then each communication method, later this was all combined. In the Real People with dementia test phase, was given one device to each participant to use during the day. The data from these tests were then analysed by the author.
+%%%%%%%%%%%%%%%%%%%%%%%  Section Procedure (end) %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Use Case}
-\label{sec:Use_case}
-\subsection{CARELINK} % (fold)
-\label{sec:Use_case_CARELINK}
-The CARELINK-AAL/0001/2016 - Living with Dementia, is a European project, target to people with dementia, that is a subgroup of the Alzheimer neurological disease.
-Causing people with this condition to usually forget where they are, leading to wandering behaviours, that can put their lives in danger.
+%%%%%%%%%%%%%%%%%%%%%%%%%  Section Use cases %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Use Cases}
 
-The purpose of this project is to develop a solution for such people, the solution is based on a wearable device and a platform, the wearable device communicates with the platform through several types of communication methods, and in the platform there are several services, being one of the services the tracking service. 
+In this section will be described the different use cases for this thesis. The three  use cases are~\nameref{subsec:laboratory},~\nameref{subsec:real_world} and~\nameref{subsec:Use_case_Swiss}. In these use cases the objective was to get the results for the geolocation. 
+For these objective  tests were conducted for the geolocation technologies both GNSS, GNSS-free. These tests consisted of gathering information from different location points, at different speeds, to discover the geolocation accuracy of such technologies. 
 
-This thesis is integrated into the geolocation solver part that is going to be one of the blocks, passing the location information for the above-mentioned tracking service. For the results of this work, the steps described below were taken.
-% subsection Work Scenario (end)
+
+%%%%%%%%%%%%%%%%%%%%%%%%  Start use case 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-
-\section{Geolocation Results}
-\label{sec:Geolocation_Results}
-To get the results for the geolocation. Tests were conducted for geolocation technologies both GNSS, GNSS-free. These tests consisted of gathering information from different location points, at different speeds, to discover the geolocation accuracy of such technologies. 
-
-\subsection{Laboratory Scenario}
+\subsection{FCT- Laboratory}
 \label{subsec:laboratory}
-The first scenario described for this chapter is the Laboratory scenario. This is where all of the test phases occurred and is situated in the University campus of the Faculty of Sciences and Technologies from the New University of Lisbon.
+The first use case described for this section is the Laboratory scenario. This is where all of the development phase occurred and is situated in the University campus of the Faculty of Sciences and Technologies from the New University of Lisbon.
+
 
 \subsubsection{BLE}
 \label{subsubsec:Geo_BLE}
@@ -78,7 +80,7 @@ The test consisted of one fixed FiPy acting as BLE Beacon, and another mobile on
 
 In the Beacon, side was created an advertisement for the beacon called $Pybeacon$, and a service called $GPS-Bluetooth-B1$  where the following data is presented $BLE->coordinates$ then exits variable called $GPS$ where the actual coordinates can be set by the user.
 
-In the device side, there is a scan for Bluetooth advertisers, if one match the $Pybeacon$ the device reads the values from the service, getting the data from the Beacon. This can also be done for managing the accompanied flag, that was presented in~\ref{tab:Profiles}. This flag is used in order to know if the device can listen to the Bluetooth name from smartphone  of the carer in charge of the~\gls{PwD}.
+In the device side, there is a scan for Bluetooth advertisers, if one match the $Pybeacon$ the device reads the values from the service, getting the data from the Beacon. This can also be done for managing the accompanied flag, that was presented in~\ref{tab:Profiles}. This flag is used to know if the device can listen to the Bluetooth name from smartphone  of the carer in charge of the~\gls{PwD}.
 
 The location accuracy is the one defined by the user, so it is going to be the best possible, the communication distance using both internal antennas was 2 m with obstacles, and 5m with a line of sight this value can increase to around 10 m with the use of an external antenna in the beacon side. The time used to retrieve the location is approximately 1s, and the BLE cannot be used to transmit the full Status message. \newline
 %\begin{figure}[htbp]
@@ -104,12 +106,13 @@ The location accuracy is the one defined by the user, so it is going to be the b
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sub sec GNSS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Sub sec GNSS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsubsection{GNSS}
 \label{subsubsec:Geo_GNSS}
-During the test phase in the laboratory scenario, the results obtained for the GNSS were done using one FiPy and one Pytrack shield. The Pytrack~\cite{PytrackSpecs} shield has a Quectel GNSS L76-L~\cite{quectel,quectelspecs}, this receiver module supports Multi-GNSS including GPS, GLONASS, Galileo and QZSS systems. The antenna used for the GNSS system was the one from the shield (surface mounted 6 by 2 mm) and not an external one due to the design dimension constrains.
+During the development phase in the laboratory scenario, the results obtained for the GNSS were done using one FiPy and one Pytrack shield. The Pytrack~\cite{PytrackSpecs} shield has a Quectel GNSS L76-L~\cite{quectel,quectelspecs}, this receiver module supports Multi-GNSS including GPS, GLONASS, Galileo and QZSS systems. The antenna used for the GNSS system was the one from the shield (surface mounted 6 by 2 mm) and not an external one due to the design dimension constrains.
 
-The test consisted initially to obtain an indoor position, which as expected failed. The test was then conducted outdoor. Already outdoor using LoRa as communication method, and at stationary speeds, the results obtained are expressed in the next figure~\ref{fig:GNSS_points}.
+The test consisted initially to obtain an indoor position, which as expected failed. The test was then conducted outdoor using LoRa as communication method, and at stationary speeds, the results obtained are expressed in the next figure~\ref{fig:GNSS_points}.
 
 \begin{figure}[htbp]
   \centering
@@ -167,8 +170,8 @@ The test consisted of one FiPy mobile that was simulating the patient. The test 
   \caption{WiFi lab}
   \label{fig:WiFi_geo}
 \end{figure}
-In the device side, there was a scan for WiFi APs. The device started by reading the values from the APs (access points or routers). These values consisted of SSID ( "service set identifier) which is the WiFi name of the network,
-BSSID( basic service set identifier) that is the  MAC address of the AP, RSSI (received signal strength indication) that is the power present in a received radio signal. There were other fields advertised such as the network channel or security, but they were all discarded since they were not useful in this situation.
+In the device side, there was a scan for WiFi APs. The device started by reading the values from the APs (access points or routers). These values consisted of SSID (service set identifier) which is the WiFi name of the network,
+BSSID (basic service set identifier) that is the  MAC address of the AP, RSSI (received signal strength indication) that is the power present in a received radio signal. There were other fields advertised such as the network channel or security, but they were all discarded since they were not useful in this situation.
 After getting this information a JSON object was generated in the device, to construct a request for the google API.
 The Google API then returns the approximate location as its possible to observe in the figure.~\ref{fig:WiFi_geo}.
 
@@ -262,6 +265,7 @@ The returned location accuracy was from  20 m to 200 m. The time used to retriev
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%  End use case 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -270,23 +274,28 @@ The returned location accuracy was from  20 m to 200 m. The time used to retriev
 
 
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%  Start use case 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %################### REAL WORLD ##################
 \newpage
-\subsection{Real World Scenario}
+
+\subsection{Lisboa- Real World}
 \label{subsec:real_world}
-The second scenario described for this chapter is the Real World scenario. This scenario was separated into two test phases. The first one intended to test the results from the lab but in the real world, which took place in Lisbon and in Alenquer (40 km away from Lisbon) to simulate booth urban and rural environments. The second test phase was held in Switzerland where the first stage of the solution, previously described in chapter~\ref{cha:Adaptive_Geolocation}, that was called hierarchical,(where the decision is made using the approximate accuracy of each geolocation method), performed trials with real people with dementia. 
-%##########################################
+The second use case described for this section is the Real World. This use case  was separated into two test locations. The first one intended to test the results from the lab but in the urban environment, which took place in Lisbon. The second location was Alenquer (40 km away from Lisbon) to simulate the  rural environment. 
+
 
 \subsubsection{GNSS}
 \label{subsubsec:GNSS}
 
 The GNSS test, in this scenario, used the same material as above in~\ref{subsubsec:Geo_GNSS}. The communication method used in this case was NB-IoT. And the test consisted of gathering GNSS Location during walking, the average speed was 5km/h, to test a real tracking situation. GNSS took about two minutes to acquire a position after a cold start.
-The result of using the device in a clear day, after waiting for around 5 minutes to fix position, and then start walking are possible to observe in the next figure~\ref{fig:GNSS_Results}, on the left side~\ref{fig:GPS_Path} is the registered GNSS path, and on the right is the real path~\ref{fig:GPS_Real}.  The walk last for 50 minutes with a 4.3 km distance(about 100 location points), in a rural environment non-stop, so none of the locations points is from stationary locations. Comparing both figures is possible to observe that some points are missing, this occurred during the reacquisition of the location since the sample time was 30 seconds. The problem verified with the requisitions of the location can be solved by using an external and more powerful (higher gain) antenna.
+The result of using the device in a clear day, after waiting for around 5 minutes to fix position, and then start walking are possible to observe in the next figure~\ref{fig:GNSS_Results}, on the left side~\ref{fig:GPS_Path} is the registered GNSS path, and on the right is the real path~\ref{fig:GPS_Real}.  The walk last for 50 minutes with a 4.3 km distance (about 100 location points), in a rural environment non-stop, so none of the locations points is from stationary locations. Comparing both figures is possible to observe that some points are missing, this occurred during the reacquisition of the location since the sample time was 30 seconds. The problem verified with the requisitions of the location can be solved by using an external and more powerful (higher gain) antenna.
 \begin{figure}[htbp]
   \centering
   \subcaptionbox{GNSS path \label{fig:GPS_Path}}%
     {\includegraphics[width=0.5\linewidth]{Chapters/Figures/GPS.JPG}}%
-  \subcaptionbox{GNSS Real path\label{fig:GPS_Real}}%
+  \subcaptionbox{Real path\label{fig:GPS_Real}}%
     {\includegraphics[width=0.5\linewidth]{Chapters/Figures/GPSREAL.JPG}}%
   \caption{GNSS Results}
   \label{fig:GNSS_Results}
@@ -321,7 +330,7 @@ The result of using the device in an urban route is possible to observe in the n
   \centering
   \subcaptionbox{WiFi path \label{fig:wifi}}%
     {\includegraphics[width=0.5\linewidth]{Chapters/Figures/wifi.JPG}}%
-  \subcaptionbox{WiFi Real path\label{fig:wifi_Real}}%
+  \subcaptionbox{Real path\label{fig:wifi_Real}}%
     {\includegraphics[width=0.5\linewidth]{Chapters/Figures/wifireal.JPG}}%
   \caption{WiFi }
   \label{fig:WiFi_Results}
@@ -452,7 +461,7 @@ Concerning the previous method is possible to observe fewer outliers, and also f
 
 
 %####################V3
-The last results were from LoRa cloud V3 Multiframe, this technique calculates the location for a device, according to the RSSI data captured from multiple LoRa frames (uplinks). Using a sequence of single frames (consisting of multiple uplink objects), that are typically received by the gateways within a short time frame. These frames are assumed to be transmitted by the device in the same location. The result is a single location estimation.
+The last results were from LoRa cloud V3 Multiframe, this technique calculates the location for a device, according to the RSSI data captured from multiple LoRa frames (uplinks). This technique uses a sequence of single frames (consisting of multiple uplink objects), that are typically received by the gateways within a short time frame. These frames are assumed to be transmitted by the device in the same location. The result is a single location estimation.
 
 Using the sequence of radio frames for a single estimation allows a location with higher accuracy than the single-frame alternative. The multi-frame technique also combines all the available data (RSSI, TDOA, SNR) into a single calculation. This results in a location estimation that is generally more accurate than do the average of multiple locations, that were calculated from several single frames.
 
@@ -470,44 +479,75 @@ This technique will work better with higher sample rates from the device, or wit
 The returned location accuracy for the 3 methods was from  30 m to 3000 m. The time used to retrieve the location is approximately $2$ sec, and LoRa was used to transmit the Status message, although was not the full status message, it was only the full values from the Status message, this one were later constructed in the TTN Network server.
 
 In short, LoRa had the worst accuracy from all of the methods, but a the same time was better in the battery usage. The previous results are thus conditioned by the fact the Gateway one was better than the others. This location method has the possibility of creation of an ad hoc network, insuring this way better location results. The optimal scenario for this assisted location will be urban or rural outdoor.
-%#######################all###################
+
+
+%%%%%%%%%%%%%%%%%%%%%%%  End use case 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%  Star use case 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%############### Start Swiss use case ########
+
 \newpage
-\subsubsection{Geolocation Results Comparison}
-\label{subsubsec:geocompare}
+
+\subsection{Swiss- Real People with Dementia} % (fold)
+\label{subsec:Use_case_Swiss}
 
 
-In this subsection, the objective is to clarify and compare the different geolocation techniques from both scenarios. The first geolocation tested was BLE, the optimal scenario for this will be indoor, short-range location, for example, to know if a person is in some room, or in a building to know in which floor the person is at. The second one in the study was the GNSS. This is the classic for solving location problems, and the best fit would be outdoor in a rural environment, but it will also work in an urban environment. The third one is WiFi and the best scenario for this assisted location will be urban outdoor, where the accuracy for the results can be close to GNSS. The last one is the analyse of the LoRa Metadata, where the optimal scenario for this assisted location will be urban or rural outdoor, but can also work Indoor. The best fit for this technique is essentially when none of the others is available or the remaining battery is to low.
+The last use case was held in Switzerland where the first stage of the solution, previously described in chapter~\ref{cha:Adaptive_Geolocation}, that was called hierarchical,(where the decision is made using the approximate accuracy of each geolocation method), performed trials with real people with dementia. 
 
-The next figure~\ref{fig:radar1} uses a radar diagram, to provide a visual and easier interpretation, of the obtained results. It is used for  comparing the different geolocation techniques with each other.
+The model after the previous testing phases  needed to be validated, therefore was used in this use case. The firsts result for the model validation, obtained during the initial phase of trials, were a total of over 50000 received messages from 10/02/2020 until 10/03/2020. The difference in the received messages and the sent messages was less than 1\%. The implemented system was able to support spikes of simultaneously received messages from different devices, and the tested version was able to process 1 message per 2 seconds. These first tests were conducted using 4 devices.
+
+In the next figure~\ref{fig:node_red_debug}, is possible to observe the output, of the system in a real life test situation. In this figure is represented the device "CP10" which was used by a~\gls{PwD}, and first is possible to observe that the message from the device contains a JSON object with the "wifiAPs" field, which was used to perform the assisted location. In this situation the assisted location was performed by the google API, as it is possible to verify by field type in the location object . This means that the system received a location from the GNSS, but this location was not valid, and then used the "wifiAPs" field do perform the assisted location, replacing the invalid GNSS data with this information. With this picture is possible to prove that system was working.
 \begin{figure}[htbp]
   \centering
-  
-    {\includegraphics[width=0.8\linewidth]{Chapters/Figures/radarfinal3.pdf}}%
- 
-  \caption{Geolocation Results Comparison}
-  \label{fig:radar1}
+    \scalebox{0.53}{
+    {\includegraphics[width=\linewidth]{Chapters/Figures/cp10.png}}%
+    }
+  \caption{Model Debug Output}
+  \label{fig:node_red_debug}
 \end{figure}
 
-From the previous figure, the next graphic~\ref{fig:radarline} was done. In this graphic is possible to observe the best technique to use in every different situation. It is possible to observe that there is not a technique better than the others in every situation. In the red arrow represented in the graphic is explained the situation where WIFI is the best suit for a mixed indoor/outdoor accuracy. Although it is not the best neither Indoor (BLE) nor Outdoor (GNSS). With   close observation of this graphic, can be concluded that the best solution is a profile-based decision system, capable of choosing at any moment the best technique to use.
+
 
 \begin{figure}[htbp]
   \centering
-  
-    {\includegraphics[width=0.8\linewidth]{Chapters/Figures/radarline.pdf}}%
- 
-  \caption{Geolocation Results Comparison line}
-  \label{fig:radarline}
+    \scalebox{0.65}{
+    {\includegraphics[width=\linewidth]{Chapters/Figures/opencell.png}}%
+    }
+  \caption{OpenCell ID}
+  \label{fig:OpennCellID_chart}
 \end{figure}
 
-%##################end Real world################
+
+
+
+From the data  in the chart~\ref{fig:OpennCellID_chart}, referent to OpenCellID API is possible to conclude that over 50000 calls were made, meaning that the system has often used the WiFi data, and from the data of the same chart is possible to observe that the result of the location failed several times, that is the reason  why it was important to have 3 APIs, has location sources.
+
+To conclude the system was able to dynamically choose the best location, from the information received. Unfortunately due to the Covid-19 pandemic, the trials with elderly people stopped, which means that the validation for the second stage was not done within real-life trials, being only tested by the author as described in the following section\ref{sec:Other Analysis}.
+
+%ter uma tabela 3 casos de uso radar com 4 niveis
+% subsection Work Scenario (end)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%  End use case 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\newpage
+%############### Start Other Analysis########
+\section{Other Analysis}
+\label{sec:Other Analysis}
+
+In this section, will be the other analysis  need in the implementation of the 'Advanced'  functional stage. This section will comprise the communication resilience analysis and the power management analysis.
+
 
 %############### Start Communication Resilience ########
-\newpage
-
-\section{Communication Resilience}
+\subsection{Communication Resilience}
 \label{sec:Comunication_Resilience}
 
-In this section, the author performed tests for communication resilience. These tests were done to test the communication resilience that was first introduced in figure~\ref{fig:Connect} from chapter~\ref{cha:Implementation}. The tests were done since they were necessary for implementing the “Advanced” functional stage.
+In this analysis, the author performed tests for communication resilience. These tests were done to test the communication resilience that was first introduced in figure~\ref{fig:Connect} from chapter~\ref{cha:Implementation}. The tests were done since they were necessary for implementing the 'Advanced' functional stage.
 
 These tests were conducted to the two different methods: LoRa and NB-IoT. To test the communication resilience, the communication fallback capabilities were tested. If the device loses the NB-IoT link, it should fall back to using the LoRa stack.
 In case the communication network changes, then the Adaptive Geolocation Solver service should be able to handle the data transition and continue the processing of information. It should also be possible to force the change of the communication technology based on the energy efficiency settings.
@@ -528,10 +568,10 @@ On the device side, the response was similar to the previous test. The device re
 %############### Start power management ########
 
 \newpage
-\section{Power Management Results}
+\subsection{Power Management}
 \label{subsec:power_management}
 
-For the purpose of getting the results for power consumption, need in the implementation of the 'Advanced'  functional stage.   Tests were conducted for the different communication  and location methods. These tests consisted of logging information from the device, with the aim to discover the battery duration, current and power, to perform  more efficient power management. From the device manufacturer is possible to observe the next figure~\ref{fig:PowerTableAll}, where some values are already provided. All of the tests were conducted in the same fix place, at a  stationary speed, with the same 2 FiPy and two LiPo batteries with 3.7V and 800mAh, the results are the average from 4 tests.
+For the purpose of getting the results for power consumption, need in the implementation of the 'Advanced'  functional stage. An analysis with several tests was conducted to the different communication  and location methods. These tests consisted of logging information from the device, with the aim to discover the battery duration, current and power, to perform  more efficient power management. From the device manufacturer is possible to observe the next figure~\ref{fig:PowerTableAll}, where some values are already provided. All of the tests were conducted in the same fix place, at a  stationary speed, with the same 2 FiPy and two LiPo batteries with 3.7V and 800mAh, the results are the average from 4 tests.
 
 \begin{figure}[htbp]
   \centering
@@ -543,7 +583,7 @@ For the purpose of getting the results for power consumption, need in the implem
 \end{figure}
 
 
-\subsection{LoRa}
+\subsubsection{LoRa}
 \label{subsec:LoRa}
 
 The first communication method studied was LoRa. To prepare this test was used the two FiPys and after letting the batteries charge for 3 hours with a 2.1A charger connect to devices. The first test was started, using only communication, the Fipy was combined with a pysense (without GNSS and Accelerometer)  shield, and the initial battery was around 4.1V and the end battery as expected was 3.3V. The next test was using the communication but reading one accelerometer sensor, and getting the GPS location, the only difference here was the use of pytrack instead of pysense. The result for the battery duration is lower as expected, for the last test was introduced also the WiFi scan for nearby Access points. The data for all of the tests is in the next table~\ref{tab:LoRa_Power} each test was considered an Operation mode. 
@@ -561,7 +601,7 @@ Average Power & \multicolumn{2}{c}{240mW} & \multicolumn{2}{c}{326mW} & \multico
 \label{tab:LoRa_Power}
 \end{table}
 
-The following figure~\ref{fig:LoRaPowerTable}, represents the current results from the manufacturer, which gives the baseline for the above-mentioned tests. LoRa has different spreading factors the configurations used in this test were the same used in the LoRa section of~\nameref{sec:Geolocation_Results}, that were spreading factor 7, bandwidth 125 kHz, TX power 14 dBm, sample time 30 seconds, message size of $110$ bytes plus $20$ bytes when WiFi was used.
+The following figure~\ref{fig:LoRaPowerTable}, represents the current results from the manufacturer, which gives the baseline for the above-mentioned tests. LoRa has different spreading factors the configurations used in this test were the same used in the LoRa section of~\nameref{subsec:laboratory}, that were spreading factor 7, bandwidth 125 kHz, TX power 14 dBm, sample time 30 seconds, message size of $110$ bytes plus $20$ bytes when WiFi was used.
 
 \begin{figure}[htbp]
   \centering
@@ -572,7 +612,7 @@ The following figure~\ref{fig:LoRaPowerTable}, represents the current results fr
   \label{fig:LoRaPowerTable}
 \end{figure}
 
-\subsection{NB-IoT}
+\subsubsection{NB-IoT}
 \label{subsec:NB} 
 
 The next communication method used for this test was, NB-IoT. The procedure was the same as above starting by using only communication and then increasing the battery usage with GNSS and accelerometer, ending with all of this plus the scan of WiFi APs. The NB-IoT is expected to have poor performance compared to LoRa, because of the message size of $245$ bytes plus $134$ bytes if WiFi data is used, which is $2.22$ to $2.71$ times higher than LoRa. The results for this method are described in the following table~\ref{tab:NB_Power}.
@@ -597,7 +637,7 @@ The next communication method used for this test was, NB-IoT. The procedure was 
     \end{threeparttable}
 \end{table}
 
-\subsection{WiFi}
+\subsubsection{WiFi}
 \label{subsec:WiFi}
 
 The last communication used for these tests was WiFi, this method is expected to have the worst battery performance, but at the same time is the one with higher transfer speeds, meaning the airtime for the same amount of data is lower, so in right circumstances could perform better than the previous two, this was the objective of the test. WiFi could not be used as viable options in the final code due to the short-range, and the need for authentication. Surprisingly, the results for the tests concluded that WiFi had better battery duration that NB-IoT. The reader should be inform that these tests were not done with the final code. They were only with hard-coded values, meaning they do not proof that WiFi is better than NB-IoT, and will not be present in the next section for comparison. These values are expressed in the next table~\ref{tab:WiFi_Power}.\newline
@@ -628,9 +668,9 @@ The last communication used for these tests was WiFi, this method is expected to
 
 
 
-\subsection{Comparison}
+\subsubsection{Power Comparison}
 \label{subsec:Power_Comparison}
-To close this section, a comparison with different communications methods, can be observed in the next table~\ref{tab:Battery Duration}. This table combines all of the data from the previous, making easier to compare the different methods, should always be taking into consideration the conditions for the different tests. As expected LoRa had the best battery duration, followed by NB-IoT and WiFi had the worst battery duration. 
+To close this analysis, a comparison with different communications methods, can be observed in the next table~\ref{tab:Battery Duration}. This table combines all of the data from the previous, making easier to compare the different methods, should always be taking into consideration the conditions for the different tests. As expected LoRa had the best battery duration, followed by NB-IoT and WiFi had the worst battery duration. 
 \newline
 
 
@@ -655,44 +695,40 @@ To close this section, a comparison with different communications methods, can b
 \end{table}
 
 
-%########################## End Power Management
-%########################## Comunication 
+% ########################## End Power Management
+% ######################### End other Analysis
 
-
-%####################### Start Validation
+% ####################### Start Results Comparison
 \newpage
-\section{Validation}
-\label{sec:validation}
+\section{Results Comparison}
+\label{sec:geocompare}
 
-The model after the testing phase needed to be validated. The firsts result for the model validation, obtained during the initial phase of trials, were a total of over 50000 received messages from 10/02/2020 until 10/03/2020. The difference in the received messages and the sent messages was less than 1\%. The implemented system was able to support spikes of simultaneously received messages from different devices, and the tested version was able to process 1 message per 2 seconds. These first tests were conducted using 4 devices. This test phase was held in Switzerland where the first functional stage of the solution, called hierarchical,(where the decision is made using the approximate accuracy of each geolocation method), performed trials with real people with dementia in real life trials.  
 
-In the next figure~\ref{fig:node_red_debug}, is possible to observe the output, of the system in a real life test situation. In this figure is represented the device "CP10" which was used by a~\gls{PwD}, and first is possible to observe that the message from the device contains the "wifiAPs" field, which was used to perform the assisted location, in this situation by the google API. This means that the system received a location from the GNSS, that was not valid, and the used the "wifiAPs" field do perform the assisted location, replacing the invalid GNSS data with this information. With this picture is possible to prove that system was working.
+In this subsection, the objective is to clarify and compare the different geolocation techniques from the three use cases. The first geolocation tested was BLE, the optimal scenario for this will be indoor, short-range location, for example, to know if a person is in some room, or in a building to know in which floor the person is at. The second one in the study was the GNSS. This is the classic for solving location problems, and the best fit would be outdoor in a rural environment, but it will also work in an urban environment. The third one is WiFi and the best scenario for this assisted location will be urban outdoor, where the accuracy for the results can be close to GNSS, but it is also a viable options for a use case where the person is in a constant transition from indoor to outdoor environments. The last one is the analyse of the LoRa Metadata, where the optimal scenario for this assisted location will be urban or rural outdoor, but can also work Indoor. The best fit for this technique is essentially when none of the others is available or the remaining battery is to low.
+
+The next figure~\ref{fig:radar1} uses a radar diagram, to provide a visual and easier interpretation, of the obtained results. It is used for  comparing the different geolocation techniques with each other.
 \begin{figure}[htbp]
   \centering
-    \scalebox{0.55}{
-    {\includegraphics[width=\linewidth]{Chapters/Figures/cp10.png}}%
-    }
-  \caption{Model Debug Output}
-  \label{fig:node_red_debug}
+  
+    {\includegraphics[width=0.8\linewidth]{Chapters/Figures/radarfinal3.pdf}}%
+ 
+  \caption{Geolocation Results Comparison}
+  \label{fig:radar1}
 \end{figure}
 
-
+From the previous figure, the next graphic~\ref{fig:radarline} was done. In this graphic is possible to observe the best technique to use in every different situation. It is possible to observe that there is not a technique better than the others in every situation. In the red arrow represented in the graphic is explained the situation where WIFI is the best suit for a mixed indoor/outdoor accuracy. Although it is not the best neither Indoor (BLE) nor Outdoor (GNSS). With   close observation of this graphic, can be concluded that the best solution is a profile-based decision system, capable of choosing at any moment the best technique to use.
 
 \begin{figure}[htbp]
   \centering
-    \scalebox{0.65}{
-    {\includegraphics[width=\linewidth]{Chapters/Figures/opencell.png}}%
-    }
-  \caption{OpenCell ID}
-  \label{fig:OpennCellID_chart}
+  
+    {\includegraphics[width=0.8\linewidth]{Chapters/Figures/radarline.pdf}}%
+ 
+  \caption{Geolocation Results Comparison line}
+  \label{fig:radarline}
 \end{figure}
 
+%################## End Results Comparison ################
 
-
-
-From the data  in the chart~\ref{fig:OpennCellID_chart}, referent to OpenCellID API is possible to conclude that over 50000 calls were made, meaning that the system has often used the WiFi data, and from the data of the same chart is possible to observe that the result of the location failed, that is why it was important to have 3 APIs, has location sources.
-
-To conclude the system was able to dynamically choose the best location, from the information received. Unfortunately due to the Covid-19 pandemic, the trials with elderly people stopped, which means that the validation for the second stage was not done within real-life trials, being only tested by the author.
 
 %################# Start Discussion
 
@@ -700,9 +736,11 @@ To conclude the system was able to dynamically choose the best location, from th
 \label{sec:Discussion}
 
 One initial objective was to  determine what kind of impact had LPWAN enabled solutions in wearable devices, in particular those focused on people with dementia.\newline 
-It was hypothesized that people dealing with dementia would benefit from LPWAN enabled solutions. Since they would help in perform the location of the person, while saving battery, reducing the overall cost, and comply with the technical constraints of wearable devices. Having also the possibility to dynamically choose, the best location available in that moment. \newline 
+It was hypothesized that people dealing with dementia would benefit from LPWAN enabled solutions. Since they would help in perform the location of the person, while saving battery, reducing the overall cost, and comply with the technical constraints of wearable devices. Having also the possibility to dynamically choose, the best location available in that moment. 
+
 The results accuracy match those mentioned in previous studies of geolocation technologies and techniques, and that are represented in~\nameref{sec:related_work}.\newline 
-There are several possible explanations for the results, since the used hardware, to the environmental conditions, for example, if the tests were taken outdoor in an urban or rural place. \newline 
+There are several possible explanations for the results, since the used hardware, to the environmental conditions, for example, if the tests were taken outdoor in an urban or rural place. 
+
 With these results, in the system  was possible to observe that with the change of communication, and the type of received message the system was capable of returning the same output, and perform the adaptive geolocation.\newline 
 These results provide support for the hypothesis that LPWAN can be used for the locations o people with dementia, while accounting for the constraints of wearable IoT devices.
 
@@ -710,5 +748,31 @@ These results provide support for the hypothesis that LPWAN can be used for the 
 
 %!!!!!(Esta secção poderá ser combinada na conclusão) !!!!
 
+
 %################# End Discussion
+
+
+
+
 %################# End Results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
