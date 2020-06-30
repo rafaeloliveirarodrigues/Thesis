@@ -48,7 +48,7 @@
   otherlistsat=front,   % front(*), back
   aftercover=false,     % false=don't true=include the aftercover file (even if exists)
   linkscolor=darkblue,      % darkblue, black (Set to 'black' for PRINTING)
-  printcommittee=true,  % set to 'false' from submitted versins who should not have 
+  printcommittee=false,  % set to 'false' from submitted versins who should not have 
                         % the list of committee memebers
   spine=false,          % (Set to 'true' for PRINTING the book spine)
   cdcover=false,         % (Set to 'true' for PRINTING the CD cover)
@@ -64,13 +64,13 @@
     % backend=bibtex,     % use bibtex if possible
     % style=numeric-comp, % numeric(*), alphabetic, authoryear, bwl-FU
     % sortcites=true,     % If numeric, sort cites by crescent order
-    % sorting=none,       % none, nyt(*), ynt
+    %sorting=none,       % none, nyt(*), ynt
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% uncomment for 'numeric-by-order-of-citation' like citations
     backend=bibtex,     % use bibtex if possible
     style=numeric-comp, % numeric(*), alphabetic, authoryear, bwl-FU
     sortcites=true,     % If numeric, sort cites by crescent order
-    sorting=nyt,        % none, nyt(*), ynt
+    sorting=none,        % none, nyt(*), ynt
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% uncomment for 'numeric-by-order-of-citation' like citations
     % backend=bibtex,   % use bibtex if possible
@@ -133,7 +133,20 @@
 %\usepackage{colortbl}    % Use colors in background of table cells
 \usepackage[textsize=footnotesize]{todonotes}  % To register TODO notes in the text
 \setlength{\marginparwidth}{3.25cm}
+\usepackage[para]{threeparttable}
+\usepackage{etoolbox}
+\usepackage{lipsum}
 
+% space below table notes
+\AtEndEnvironment{threeparttable}{\vskip10pt}{}{}% change here
+\makeatletter
+% font size for table notes
+\patchcmd{\TPT@doparanotes}
+  {\TPT@hsize}
+  {\TPT@hsize\footnotesize}
+  {}
+  {}
+\makeatother
 
 
 %% FOR DEMO PURPOSES ONLY --- TO BE REMOVED by final users
@@ -195,7 +208,7 @@
 \authordegree{Bachelor of Science in Electrical and Computer Engineering}
 
 % Date
-\datemonth{June}
+\datemonth{July}
 \dateyear{2020}
 
 
@@ -210,7 +223,7 @@
 
 % Co-Advisers (maximum of 9)
 % use [f] for female and [m] for male
-\coadviser[m]{João Filipe dos Santos Sarraipa}{Associate\\& Professor}{NOVA University of Lisbon}
+\coadviser[m]{João Filipe dos Santos Sarraipa}{Invited Assistant\\& Professor}{NOVA University of Lisbon}
 % \coadviser[f]{[Nome da co-orientadora 2]}{[Profª.\ Auxiliar]}{[Universidade Nova de Lisboa]}
 
 

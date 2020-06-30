@@ -83,22 +83,11 @@ for (a = ++c; a <bytes.length ; a++) {
 return {
    wifiAPs:null ,
    timestamp:time,
-   location:{
-    lat:lat,
-    lon:lon,
-    alt:alt,
-    hdop:hdop,
-    vdop:vdop,
-    pdop:pdop,
-  },
+   location:{ lat:lat, lon:lon, alt:alt, hdop:hdop, vdop:vdop, pdop:pdop,},
   batteryLevel:bl,
   sensor:{
-    accelerometer:{
-      x:accx,
-      y:accy,
-      z:accz
+    accelerometer:{x:accx, y:accy, z:accz }
     }
-  }
   };
 }else{
  var mac1="";
@@ -178,30 +167,13 @@ for (b = ++d; b <bytes.length ; b++) {
    d++;
 }
 return {
-   wifiAPs: {
-     mac_1: mac1,
-     rssi_1:rssi1,
-     mac_2: mac2,
-     rssi_2:rssi2,
-     mac_3: mac3,
-     rssi_3:rssi3,
-   },
+   wifiAPs: { mac_1: mac1, rssi_1:rssi1, mac_2: mac2, rssi_2:rssi2, 
+   mac_3: mac3, rssi_3:rssi3 },
    timestamp:time1,
-   location:{
-    lat:lat1,
-    lon:lon1,
-    alt:alt1,
-    hdop:hdop1,
-    vdop:vdop1,
-    pdop:pdop1,
-  },
+   location:{lat:lat1, lon:lon1, alt:alt1, hdop:hdop1, vdop:vdop1, pdop:pdop1},
   batteryLevel:bl1,
   sensor:{
-    accelerometer:{
-      x:acc1x,
-      y:acc1y,
-      z:acc1z
-    }
+    accelerometer:{ x:acc1x, y:acc1y, z:acc1z }
   }
 };
 }

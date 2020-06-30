@@ -32,9 +32,9 @@ If there is the need to change the inner implementation of any of the entities, 
 
 \begin{figure}[htbp]
   \centering
-    \scalebox{0.75}{
-    {\includegraphics[width=\linewidth]{Chapters/Figures/arch3.pdf}}%
-    }
+    %\scalebox{0.75}{
+    {\includegraphics[height=6cm,width=0.9\linewidth]{Chapters/Figures/arch4.pdf}}%
+    %}
  
   \caption{Architecture}
   \label{fig:Arch}
@@ -58,7 +58,7 @@ Both types of wearable plastic enclosures have a micro USB connector slot for de
     {\includegraphics[width=0.45\linewidth]{Chapters/Figures/hardware11.jpg}}%
   \subcaptionbox{Belt Box\label{fig:Belt_Box}}%
     {\includegraphics[width=0.4\linewidth]{Chapters/Figures/hardware2.jpg}}%
-  \caption{Wearable Devices (X)}
+  \caption{Wearable Devices}
   \label{fig:Wearable_Devices}
 \end{figure}
 
@@ -144,7 +144,7 @@ The next Figures represents the piece of code, that is executed inside the "Star
 \begin{figure}[htbp]
   \centering
   
-    {\includegraphics[width=\linewidth]{Chapters/Figures/loralibwhite.JPG}}%
+    {\includegraphics[width=0.9\linewidth]{Chapters/Figures/loralib.pdf}}%
  
   \caption{LoRa Transmission from loraLib.py~\cite{githubcode}}
   \label{fig:LoRa_Transmit}
@@ -155,7 +155,7 @@ The last thing in the Hardware side, for the Adaptive Geolocation model, is the 
 \begin{figure}[htbp]
   \centering
   
-    {\includegraphics[width=0.9\linewidth]{Chapters/Figures/wifiapswhite.JPG}}%
+    {\includegraphics[width=0.9\linewidth]{Chapters/Figures/wifi.pdf}}%
  
   \caption{WiFi APs Code from wifi.py~\cite{githubcode}}
   \label{fig:WifiAps}
@@ -172,9 +172,6 @@ The two previous images~\ref{fig:WifiAps} and ~\ref{fig:LoRa_Transmit}, are piec
 %On the device the work done regarding communication consists, in the use of~\gls{MQTT} between the device and the model. When the transmission method used is LoRa there is the need for an extra layer of "translation" that where the next section comes in.  
 
 
-
-\newpage
-
 \section{LoRa Network Server} % (fold)
 \label{sec:server}
 \subsection{TTN} % (fold)
@@ -187,13 +184,13 @@ The next Figure~\ref{fig:TTN_Console}, shows the TTN console for the application
 \begin{figure}[htbp]
   \centering
   
-    {\includegraphics[width=\linewidth]{Chapters/Figures/ttn2.JPG}}
+    {\includegraphics[height=9cm,width=\linewidth]{Chapters/Figures/ttn.pdf}}
  
   \caption{TTN Console}
   \label{fig:TTN_Console}
 \end{figure}
 
-For this work, TTN was selected because it was the one with better community support, documentation, and fulfilled the requirements for the use case in study. There is other alternatives for TTN such as  loriot~\cite{Loriot},thingsboard~\cite{ThingsBoard},Mbed OS~\cite{Mbed} and Mozilla IoT~\cite{Mozilla}. 
+For this work, TTN was selected because it was the one with better community support, documentation, and fulfilled the requirements for the use case in study. There is other alternatives for TTN such as  loriot~\cite{Loriot}, thingsboard~\cite{ThingsBoard}, Mbed OS~\cite{Mbed} and Mozilla IoT~\cite{Mozilla}. 
 
 
 % subsection ttn (end)
@@ -205,6 +202,7 @@ For the presented work, to achieve the adaptive Geolocation, was developed and i
 % subsection nodered_sota (end)
 \subsection{Node-red} % (fold)
 \label{sec:nodered_sota}
+%ver secc vertical
 The platform chosen by the author for the development of the Adaptive Geolocation Solver, was Node-Red~\cite{Node}.
 Node-RED is  Low-code programming, for event-driven applications, it uses development tool for visual programming, was initially developed by IBM, with the intention of wiring together devices, APIs and other online services that were part of the IoT.
 Node-RED uses a web browser-based flow editor, that can be used to write JavaScript functions. The run-time is built on top of Node.js. The flows created in Node-RED can be saved using JSON. In 2016, Node-RED was contributed by IBM  to JS Foundation  as an open source project.
@@ -216,9 +214,9 @@ The instructions need to replicate this work are in  Appendix~\ref{app:nodered},
 \begin{figure}[htbp]
   \centering
   
-    {\includegraphics[width=\linewidth]{Chapters/Figures/LoRaUplink.png}}
+    {\includegraphics[height=9.3cm,width=0.9\linewidth]{Chapters/Figures/LoRaUplinkFlow.pdf}}
  
-  \caption{Full LoRa Uplink Flow}
+  \caption{LoRa Uplink Flow}
   \label{fig:LoRa_Uplink}
 \end{figure}
  
@@ -227,41 +225,19 @@ As it is possible to observe in the previous figure~\ref{fig:LoRa_Uplink}, the L
 \begin{itemize}
   \item Section 1\\
     In section 1 the model, receives an input message from the TTN, as explained in the~\ref{sec:server}, and this message is stored in a queue with a gate, this queue gate can be trigger activated, which means that a message is only released when the last message was processed. This received message serves as input for monitor counter, and for the LoRa Downlink module, for later use. After the queue is the first function where the message is analysed. If the message contains valid GPS data, the next section is section 3. If there is no GPS data but Wi-Fi data is available the next section is section 2. 
-    \begin{figure}[htbp]
-      \centering
-        \scalebox{0.6}{
-        {\includegraphics[width=\linewidth]{Chapters/Figures/section1.JPG}}
-        } 
-      \caption{LoRa Uplink  Section 1}
-      \label{fig:LoRa_Uplink_Sec1}
-    \end{figure}
+   
 \end{itemize}
 
 \begin{itemize}
   \item Section 2\\
     At section 2 the Wi-Fi data is first analysed, and then is sent to the load balancer, at the same time is stored in a second queue. The load balancer distributes the messages through the 3 APIs, following the equation presented in~\ref{eq:loadbalancer}. If the two chosen APIs, failed to delivery the location, the gate is activated, and the message is resent to another API. If the location is successfully received the queue is cleared, and the location with the best accuracy is sent to section 3.
-    \begin{figure}[htbp]
-      \centering
-     
-        {\includegraphics[width=\linewidth]{Chapters/Figures/sec2.png}}
-    
-      \caption{LoRa Uplink  Section 2}
-      \label{fig:LoRa_Uplink_Sec2}
-    \end{figure}
+
 \end{itemize}
 
 \begin{itemize}
   \item Section 3\\
-  In this last section represented in figure~\ref{fig:LoRa_Uplink_Sec3}, the received information from section 1 and 2 is analysed. The first function ensures that the previous information is not null, then the original information is merged  with the information from section 2. After that, the correct topic is selected  the final information is sent, to the MQTT broker of the Carelink platform. At the end of the function responsible for the selection of the correct topic, is the monitor counter, and a connection to the trigger of the first queue, in order to release the next message.
-  
-    \begin{figure}[htbp]
-      \centering
-    
-        {\includegraphics[width=\linewidth]{Chapters/Figures/section3.JPG}}
-     
-      \caption{LoRa Uplink Section 3}
-      \label{fig:LoRa_Uplink_Sec3}
-    \end{figure}
+  In this last section the received information from section 1 and 2 is analysed. The first function ensures that the previous information is not null, then the original information is merged  with the information from section 2. After that, the correct topic is selected  the final information is sent, to the MQTT broker of the Carelink platform. At the end of the function responsible for the selection of the correct topic, is the monitor counter, and a connection to the trigger of the first queue, in order to release the next message.
+
 \end{itemize}
 
 \end{itemize}
@@ -269,12 +245,12 @@ As it is possible to observe in the previous figure~\ref{fig:LoRa_Uplink}, the L
 
 \begin{itemize}
    \item \textbf{LoRa Downlink} \\
-   The Carelink platform is capable of  communicating directly with devices, through MQTT, but this is not possible directly using LoRa as explained earlier in section~\ref{cha:Implementation}, so this module acts as a middle layer for the communication. This module is represented in figure~\ref{fig:LoRa_Downlink}, on the left side of this figure, are the subscribed MQTT topics. In the bottom of the figure is the input message from the LoRa Uplink module, which was used to send a "ping" message to the device, this was used for knowing that the device was still alive. The other solution was to use Uplink confirmations, but this was less power efficient. The workflow behind this module is the following: First, subscribe to the MQTT topics, then convert the information to base64, select the correct node and send to TTN.
+   The Carelink platform is capable of  communicating directly with devices, through MQTT, but this is not possible directly using LoRa as explained earlier in section~\ref{cha:Implementation}, so this module acts as a middle layer for the communication. This module is represented in figure~\ref{fig:LoRa_Downlink}, on the left side of this figure, are the subscribed MQTT topics. In the bottom of the figure is the input message from the LoRa Uplink module, which was used to send a "ping" message to the device, this was used for knowing that the device was still alive. The other solution was to use Uplink confirmations, but this was less power efficient. The workflow behind this module is the following: First, subscribe to the MQTT topics, then convert the information to base64, select the correct node and send to TTN.\newline\newline\newline\newline
    
      \begin{figure}[htbp]
       \centering
       
-        {\includegraphics[width=0.9\linewidth]{Chapters/Figures/LoRaDownlink.JPG}}
+        {\includegraphics[height=9.5cm,width=0.9\linewidth]{Chapters/Figures/LoRaDown.pdf}}
      
       \caption{LoRa Downlink Flow}
       \label{fig:LoRa_Downlink}
@@ -288,17 +264,17 @@ As it is possible to observe in the previous figure~\ref{fig:LoRa_Uplink}, the L
     \begin{figure}[htbp]
       \centering
       
-        {\includegraphics[width=0.9\linewidth]{Chapters/Figures/PowerManagement.JPG}}
+        {\includegraphics[height=4cm,width=0.9\linewidth]{Chapters/Figures/PowerManagement3.png}}
      
       \caption{Power Management Flow}
       \label{fig:Power_Management}
     \end{figure}
  
 \end{itemize}
-
+\newpage
 \begin{itemize}
    \item \textbf{Non LoRa Uplink} \\
-    This module as the same functions as the "LoRa Uplink", but for Non LoRa communications, the working principle is the same, except the first section, is changed by the one represented in figure~\ref{fig:Non_LoRA_Up}.
+    This module as the same functions as the "LoRa Uplink", but for Non LoRa communications, the working principle is the same, except the first section, is changed by the one represented in figure~\ref{fig:Non_LoRA_Up}.\newline
     
     \begin{figure}[htbp]
       
@@ -314,12 +290,12 @@ As it is possible to observe in the previous figure~\ref{fig:LoRa_Uplink}, the L
 
 \begin{itemize}
    \item \textbf{Monitoring} \\
-   The Monitoring module described in figure~\ref{fig:Monitoring}, has the ability to connect with the other modules, as it is possible to observe in the left side of the figure. This module uses several counters in different check points, and combines this information to create a report. This report is then sent by e-mail to the person in charge of the model, for this work was used a daily e-mail. This module as also another function that is always analysing the different counter, and when a certain threshold is crossed, sends an SMS to the same person.
+   The Monitoring module described in figure~\ref{fig:Monitoring}, has the ability to connect with the other modules, as it is possible to observe in the left side of the figure. This module uses several counters in different check points, and combines this information to create a report. This report is then sent by e-mail to the person in charge of the model, for this work was used a daily e-mail. This module as also another function that is always analysing the different counter, and when a certain threshold is crossed, sends an SMS to the same person.\newline
  
   \begin{figure}[htbp]
   \centering
   
-    {\includegraphics[width=\linewidth]{Chapters/Figures/Monitoring.JPG}}
+    {\includegraphics[width=0.9\linewidth]{Chapters/Figures/monitoring.pdf}}
  
   \caption{Monitoring Flow}
   \label{fig:Monitoring}
@@ -333,7 +309,7 @@ As it is possible to observe in the previous figure~\ref{fig:LoRa_Uplink}, the L
 
  \begin{figure}[htbp]
   \centering
-    \scalebox{0.6}{
+    \scalebox{0.75}{
     {\includegraphics[width=\linewidth]{Chapters/Figures/login.PNG}}
     }
   \caption{Login Screen}
@@ -355,7 +331,7 @@ An application programming interface (API) is used as an interface between the N
 
 \subsubsection{Wi-Fi} % (fold)
 \label{sec:wifi_sota}
-The Wi-Fi~\cite{wifi} assisted location is achieved through the APIs. These APIs consume the surrounding Wi-Fi Access points and the respective~\gls{RSSI}. With this information, they do a cross-reference check in a database, and the result is sent back to the Node-Red. For this work, three APIs are used as described in chapter 5 of Appendix2~\ref{app:nodered}. The three used APIs were Google Geolocation API~\cite{GoogleLocation}, Here~\cite{Here} and OpenCellID~\cite{OpenCell}, as an alternative the Mozilla location APi~\cite{Mozilla} was also studied but at the moment of writing, there were no keys available. The next figure~\ref{fig:Google_API}, represents a test example for the Here API.\newline
+The Wi-Fi~\cite{wifi} assisted location is achieved through the APIs. These APIs consume the surrounding Wi-Fi Access points and the respective~\gls{RSSI}. With this information, they do a cross-reference check in a database, and the result is sent back to the Node-Red. For this work, three APIs are used as described in chapter 5 of Appendix2~\ref{app:nodered}. The three used APIs were Google Geolocation API~\cite{GoogleLocation}, Here~\cite{Here} and OpenCellID~\cite{OpenCell}, as an alternative the Mozilla location APi~\cite{Mozilla} was also studied but at the moment of writing, there were no keys available. The next figure~\ref{fig:Google_API}, represents a test example for the Here API, using the Postman software.\newline
 
 
  

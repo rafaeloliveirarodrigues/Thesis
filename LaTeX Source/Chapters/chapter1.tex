@@ -22,20 +22,39 @@ In the next sections of this chapter will be presented the motivation for a cont
 
 
 In the coming years, a high number of ~\gls{IoT} devices are expected, some forecasts point to more than 20 billion. These devices are connected to the Internet and connected to each other, as well as, to people around them. On the other hand, one of the problems that will appear in the coming years also associated with an older population~\cite{pordata_pt,pordata_EU}, and with a higher life expectancy is the growth of diseases such as dementia.
-\textit{"Dementia is an age-associated impairment that could affect about 135 million people worldwide by the year 2050"}~\cite{Hammoud2018}.\\
+\textit{"Dementia is an age-associated impairment that could affect about 135 million people worldwide by the year 2050"}~\cite{Hammoud2018}.
+
 As verified by the numbers revealed in the report of 2019 from OECD, almost 20 million people in OECD countries are estimated to have dementia in 2019. If the present trends continue, that number will more than double by 2050, achieving nearly 41 million people. Age is still the biggest risk factor for dementia: across the 36 OECD countries, average dementia prevalence increases from 2.3\% among people aged 65-69 to almost 42\% among people aged 90 or more.
-This means that as countries age, the number of people living with dementia will also increase, particularly as the proportion of the population over 80 rises. \\
+
+This means that as countries age, the number of people living with dementia will also increase, particularly as the proportion of the population over 80 rises. 
+
 Nowadays, countries with some of the oldest populations have the highest prevalence of dementia. Across OECD countries, on average, 15 people per 1 000 population are estimated to have dementia. 
 By 2050, the prevalence of dementia will be more than 20 people per 1,000 population, while in Portugal more than one in 25 people will be living with dementia.~\cite{oecdcare}
 \\The Long-term care workers in Portugal per 100 people aged 65 and over, is  0.5 what represents 10 times less than OECD median~\cite{OECD2019a}.
-\\
-Thus the author of this thesis, as well as, the Carelink project in which it is integrated try to join both factors aiming that the first can have a positive effect on the decreasing of the second. Helping people today with this problem, by trying to reduce the number of deaths, and, give a better quality of life for the patient and his caregiver, always to help to find a positive way to solve this problem in the future.
+
+
+Thus the author of this thesis, and, the Carelink~\cite{carelink} project in which it is integrated try to join both factors aiming that the increasing number of IoT can have a positive effect on the decreasing of the risks associated with dementia.
+
+The CARELINK-AAL/0001/2016 - Living with Dementia, is a European project target to people with dementia, that is a subgroup of the Alzheimer neurological disease. This problem causes people with this condition to forget where they are, leading to wandering behaviours, that can put their lives in danger.
+The purpose of this project is to develop a solution for such people, the solution is based on
+a wearable device and a platform, the wearable device communicates with the platform through
+several types of communication methods, and in the platform there are several services, being one service the tracking service.
+
+The solution developed by the author is an adaptive geolocation system that combines the different geolocation methods, resulting in an overall location that provides the best results in terms of precision and performance-wise. This will try to help people today with dementia, by trying to reduce the number of deaths associated with wandering behaviours, giving a better quality of life for the patient and his caregiver.
+
+
+
+
+
 % Section Motivation (end)
 
 % Section Research Method Start
 \section{Research Method}
 \label{sec:research_method}
-For this work, the approach taken was divided into 3 different steps, as shown in figure~\ref{fig:WorkApp}, the first is regarding to Research, which comprises the literature review, compilations of similar works, and debugging. The next phase is development, where the previous knowledge acquired from the research is used in practice, and the tests are defined. The last phase is Testing, the testing phase consists of using the results from the development phase, and apply them in real life. After testing, the iteration is repeated until the final result is achieved. When the final result is achieved, and the results could help other researchers, the work is published.
+
+For this work, the approach taken was divided into 3 different steps, as shown in figure~\ref{fig:WorkApp}.\\
+The first is regarding to research, which comprises the literature review, compilations of similar works, and debugging. The next phase is development, where the previous knowledge acquired from the research is used in practice, and the tests are defined.\\
+The last phase is testing, this consists of using the results from the development phase, and apply them in real life. After testing, the iteration is repeated until the final result is achieved. When the final result is achieved, and the results could help other researchers, the work is published.
 
 
 \begin{figure}[htbp]
@@ -49,7 +68,7 @@ For this work, the approach taken was divided into 3 different steps, as shown i
 % Section Research Method (end)
 \newpage
 % Section Research Questions Start
-\section{Research Questions} % (fold)
+\section{Research Question} % (fold)
 \label{sec:research_question}
 
 The purpose of this research is to evaluate if a wearable device, with dynamic geolocation,  based in various system factors such as available communication, and power management, can contribute for an improved localization process and position accuracy. Where the main problem is to know the location of such devices, there are solutions based on GNSS and in this thesis will work as a reference, for a GNSS free alternative. The application of an adaptive geolocation solution for elderly people raises the following research problem:
@@ -63,7 +82,8 @@ The purpose of this research is to evaluate if a wearable device, with dynamic g
 \section{Hypothesis}
 \label{sec:hypothesis}
 
-Can LPWAN enabled solutions, helping in perform the location of the person, while saving battery, reducing the overall cost, and comply with the technical constraints of wearable devices. Having also the possibility to dynamically choose, the best location available in that moment.
+Can LPWAN enabled solutions, helping in perform the location of the person, while saving battery, reducing the overall cost, and comply with the technical constraints of wearable devices. 
+This may also have also the possibility to dynamically choose, the best location available in that moment.
 
 
 
@@ -108,7 +128,7 @@ This dissertation is dived in 6 chapters, which are presented below:
 	\item \textbf{Chapter 4 - Implementation}:  In  this chapter is described  the implementation of each part, with the technologies and methodology used.
 	
 	
-	\item \textbf{Chapter 5 - Results}: This fifth chapter, presents the methodology used for the solution and the  proposed used case is presented, as well as the practical field tests, conducted for the project. 
+	\item \textbf{Chapter 5 - Results}: This fifth chapter, presents the methodology used for the solution and the  proposed used cases are presented, as well as, the practical field tests conducted for the project. 
 	
 	\item \textbf{Chapter 6 - Conclusions}: This dissertation is concluded with the presentation of the final thoughts and remarks, as well as the hypothesis presented for solving of the research question and problems previously identified. At the end of this chapter, a subsection "Future Work"~\ref{sec:Future_work} is presented with the proposal for possible continuation work. 
 

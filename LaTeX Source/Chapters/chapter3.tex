@@ -23,7 +23,7 @@ It is proposed as a module that is part of the Carelink platform.
 \section{Overview}
 \label{sec:overview}
 
-The above-mentioned platform represented in~\ref{fig:Platform_Archictecture}, was designed to be safe, extendable and perform well in the future. To achieve this, the micro-services approach was adopted, where logically distinct elements of application code are developed and deployed separately. These services communicate with each other using a combination of REST and messages. This enables services to be continually improved and new services to be implemented whenever needed. 
+The above-mentioned platform is represented in~\ref{fig:Platform_Archictecture}, and it was designed to be safe, extendable and perform well in the future. To achieve this, the micro-services approach was adopted, where logically distinct elements of application code are developed and deployed separately. These services communicate with each other using a combination of REST and messages. This enables services to be continually improved and new services to be implemented whenever needed. 
 
 \begin{figure}[htbp]
   \centering
@@ -36,16 +36,16 @@ The above-mentioned platform represented in~\ref{fig:Platform_Archictecture}, wa
 One of the services present in the platform is the tracking service. This micro-service acts as a consumer of the output, from the proposed model. 
 The model acts as a bridge between the physical world, composed by the hardware devices, and the respective sensors, and the virtual world represented by the Carelink platform.
 
-The location of people with dementia, demands a resilient and fast system, capable of offering real-time data, structured in such a way that is easy to present and visualize, so the next module is capable without much effort to present in a graphical away allowing the user fast access to the information.
-Since the situation when a person with dementia, has an episode of wandering, is highly stressful, for the caregivers or person in charge, is imperative that the system is able to provide an accurate location without being too complex, because this system is intended to track devices that are connected to persons, not to assets or animals, is one main requirement to have high availability.\newline
+The location of people with dementia, demands a resilient and fast system, capable of offering real-time data, structured in such a way that is easy to present and visualize, so the next module is capable without much effort to present in a graphical away the information, allowing the user fast access to this one.
+Since the situation when a person with dementia, has an episode of wandering, is highly stressful, for the caregivers or person in charge, is imperative that the system is able to provide an accurate location without being too complex, because this system is intended to track devices that are connected to persons, not to assets or animals, is one main requirement to have high availability.\newline\newline
 
 
 The model must be prepared to receive, as well as, interpret messages from different devices and transmission types (LoRa, NB-IoT). In order to achieve this must be device agnostic, the way to solve this issue is using a naming convention for the protocol of communication (MQTT). 
-Following the same ideology of the platform, it must also be divided into small modules, to be easily scalable, and allow updates without large changes to the core implementation, being more future proof. This approach also benefits model with a more easy and manageable way of implement security, monitoring and redundancy.
+Following the same ideology of the platform, it must also be divided into small modules, to be easily scalable, and allow updates without large changes to the core implementation, being more future proof. This approach also benefits the model with a more easy and manageable way of implement security, monitoring and redundancy.
 
 As the information may arrive at different rates, or even in the worst-case fail, the model functionalities, work in modules that are independent and they can work isolated, as well as, in parallel. To solve this problem inside of one particular module, was used smart gate queuing and load balancing techniques.
 
-To conclude was intended that the model, alongside with is integrated system, were capable of performing a location, taking into account the remaining battery of the device, and in the end create a profile-based decision system, in charge of dynamically choose the best location.
+To conclude was intended that the model, alongside with is integrated system, were capable of performing a location, taking into account the remaining battery of the device, and in the end create a profile-based decision system, in charge of dynamically choose the best location, providing this way the adaptive geolocation capability.
 
 
 
@@ -69,6 +69,13 @@ This model is composed by different modules each of one with a different functio
   \caption{Mind Map for Model Schematic}
   \label{fig:Model_Schematic}
 \end{figure}
+
+
+
+\begin{itemize}
+\item \textbf{Web Core} \\
+This is the core module where all the others are built on top. The main characteristics of this module will be discussed in more detail in the next chapter~\ref{cha:Implementation}, but essentially it is a web server capable of running JavaScript functions.
+\end{itemize}
 
 \begin{itemize}
 \label{susec:Lora_to_Platform}
@@ -117,10 +124,6 @@ This model is composed by different modules each of one with a different functio
    \end{itemize}
 \end{itemize}
 
-\begin{itemize}
-\item \textbf{Web Core} \\
-This is the core module where all the others are built on top. The main characteristics of this module will be discussed in more detail in the next chapter~\ref{cha:Implementation}, but essentially it is a web server capable of running JavaScript functions.
-\end{itemize}
 
 \begin{itemize}
    \item \textbf{Non LoRa Uplink} \\
@@ -186,7 +189,7 @@ The "Security"  module is responsible for the correct operation of the model. Th
 \subsection{Stages \& Operation}
 \label{susec:Stages_Operation}
 
-The aim of the presented work is the development and implementation of a model. The model intends to define what technologies to use, and how the geolocation data from different sources should be processed, so that it can later be used for knowing the actual position of the patient wearing the device.
+The aim of the presented work is the development and implementation of this model. This model intends to define what technologies to use, and how the geolocation data from different sources should be processed, so that it can later be used for knowing the actual position of the patient wearing the device.
 
 In order to develop the solution described, it was defined a model to characterize and formalize the different types of solutions called stages. Later an implementation following the model defined occurred creating the so-called profile based decision system.
 
@@ -201,14 +204,14 @@ The next diagram~\ref{fig:Stages}, represents the three different functional sta
   \caption{Model Stages}
   \label{fig:Stages}
 \end{figure}
-
+%maior
 
 \begin{itemize}
 \item \textbf{Stage 1} - Hierarchical 
 \end{itemize}
 
 
-The first stage called hierarchical, in which the best location is decided using the approximate accuracy of each method. Taking into account the documentation, and the tests performed, the accuracy defined was $GNSS > WiFi > LoRa$.
+The first stage called hierarchical, in which the best location is decided using the approximate accuracy values of each method. Taking into account the documentation, and the tests performed, the accuracy defined was $GNSS > WiFi > LoRa$.
 
 \begin{figure}[htbp]
   \centering
@@ -237,7 +240,7 @@ In the first block "Has GNSS?", the location field of~\ref{fig:JSON_Status} is a
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Stage 1 Wifi %%%%%%%%%%%%%%%%%%
 
-In case the location field is empty or the coordinates are considered not valid, the following block is the “Has Wi-Fi APs?”. In this, the "wifiAPs"  field from the above-mentioned JSON is analysed. If it is different from null, this payload is used to perform the assisted location, based on the Wi-Fi data. This data will then be sent to three different API,  using a load balancer based in the sequential Round Robin, to obtain the best information for the location, and at the same time use fewer APIs calls, and prevent the APIs from refuse the requests. The three used APIs in this work were, Google Geolocation API, Here Position API and OpenCelliD Cellular Geolocation API. This load balancer uses the following equation:
+In case the location field is empty or the coordinates are considered not valid, the following block is the “Has Wi-Fi APs?”. In this, the "wifiAPs"  field from the above-mentioned JSON object is analysed. If it is different from null, this payload is used to perform the assisted location, based on the Wi-Fi data. This data will then be sent to three different API,  using a load balancer, which is  based in the sequential Round Robin. This is done to obtain the best information for the location, and at the same time use fewer APIs calls, and prevent the APIs from refuse the requests. The three used APIs in this work were, Google Geolocation API, Here Position API and OpenCelliD Cellular Geolocation API. This load balancer uses the following equation:
 
 \begin{equation} \label{eq:loadbalancer}
     h(x) = \begin{cases}
@@ -254,17 +257,16 @@ In the previous equation~\ref{eq:loadbalancer}:
 	\item {$G$} - Google
 
 \end{itemize} 
-After receiving the response, the information is compared between the two used APIS, in order to guarantee redundancy, as well as, the best accuracy possible. And then it is combined in the JSON Status, and the unused fields are discarded, in the end, this JSON is also forwarded to the platform. In case this method fails.
+After receiving the response, the information is compared between the two used APIS, in order to guarantee redundancy, as well as, the best accuracy possible. And then it is combined in the JSON Status, and the unused fields are discarded. In the end, this JSON is also forwarded to the platform.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Stage1 LoRa %%%%%%%%%%%%%%
 
-The last available block for getting the location. If the communication method in use was LoRa, will be the LoRa metadata whereby applying geolocation algorithms, such as multilateration, based on received signal strength or the time of difference of arrival. The result is the device location. For this last method work, a minimum of three gateways in range is needed. In the scenario where all of the three previous
-blocks, failed to  return a valid location, it is returned location unknown.\newline
+If the communication method in use was LoRa, then the LoRa metadata will also be used to apply different geolocation algorithms, such as multilateration, based on received signal strength or the time  difference of arrival. The result is the approximated device location. For this last method work, with reliability, a minimum of three gateways in range is needed. In the scenario where all of the three previous blocks, failed to  return a valid location, it is returned location unknown.
 
 
 \begin{figure}[htbp]
   \centering
-    \scalebox{0.3}{
+    \scalebox{0.35}{
     {\includegraphics[width=\linewidth]{Chapters/Figures/LoRaMetadata.JPG}}%
     }
   \caption{LoRa Location Metadata}
@@ -370,7 +372,9 @@ The Carelink platform, alongside with the model, is responsible for managing the
 The final geolocation information is then passed on to the corresponding micro-service, in this case, the tracking service, and then the final step is sending the response from the tracking service to the GUI.
 Once in the GUI the user responsible for the patient can be alerted,  when a geofencing alert is raised, with the information that the person has crossed to an unsafe area.
 
-To conclude the next~\acrshort{SWOT} analysis of the model summarizes the different aspects of this work.\newline
+To conclude the next~\acrshort{SWOT} analysis of the model summarizes the different aspects of this work. From the data in the orange corner is possible to observe that one drawback of this work is the maximum number of processed messages. In the grey square is presented to the reader, the threats of this work being the first threat the dependency from 3rd party providers, for the locations done through API. The last threat is the PwD Acceptance, this threat consists of convincing the PwD and the respective caregiver that the proposed solution could benefit both.
+
+
 \begin{figure}[htbp]
 \centering
 %%% SWOT matrix
