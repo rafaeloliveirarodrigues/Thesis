@@ -23,7 +23,7 @@ It is proposed as a module that is part of the Carelink platform.
 \section{Overview}
 \label{sec:overview}
 
-The above-mentioned platform represented in~\ref{fig:Platform_Archictecture}, was designed to be safe, extendable and perform well in the future. To achieve this, the micro-services approach was adopted, where logically distinct elements of application code are developed and deployed separately. These services communicate with each other using a combination of REST and messages. This enables services to be continually improved and new services to be implemented whenever needed. 
+The above-mentioned platform is represented in~\ref{fig:Platform_Archictecture}, and it was designed to be safe, extendable and perform well in the future. To achieve this, the micro-services approach was adopted, where logically distinct elements of application code are developed and deployed separately. These services communicate with each other using a combination of REST and messages. This enables services to be continually improved and new services to be implemented whenever needed. 
 
 \begin{figure}[htbp]
   \centering
@@ -36,16 +36,16 @@ The above-mentioned platform represented in~\ref{fig:Platform_Archictecture}, wa
 One of the services present in the platform is the tracking service. This micro-service acts as a consumer of the output, from the proposed model. 
 The model acts as a bridge between the physical world, composed by the hardware devices, and the respective sensors, and the virtual world represented by the Carelink platform.
 
-The location of people with dementia, demands a resilient and fast system, capable of offering real-time data, structured in such a way that is easy to present and visualize, so the next module is capable without much effort to present in a graphical away allowing the user fast access to the information.
+The location of people with dementia, demands a resilient and fast system, capable of offering real-time data, structured in such a way that is easy to present and visualize, so the next module is capable without much effort to present in a graphical away the information, allowing the user fast access to this one.
 Since the situation when a person with dementia, has an episode of wandering, is highly stressful, for the caregivers or person in charge, is imperative that the system is able to provide an accurate location without being too complex, because this system is intended to track devices that are connected to persons, not to assets or animals, is one main requirement to have high availability.\newline\newline
 
 
 The model must be prepared to receive, as well as, interpret messages from different devices and transmission types (LoRa, NB-IoT). In order to achieve this must be device agnostic, the way to solve this issue is using a naming convention for the protocol of communication (MQTT). 
-Following the same ideology of the platform, it must also be divided into small modules, to be easily scalable, and allow updates without large changes to the core implementation, being more future proof. This approach also benefits model with a more easy and manageable way of implement security, monitoring and redundancy.
+Following the same ideology of the platform, it must also be divided into small modules, to be easily scalable, and allow updates without large changes to the core implementation, being more future proof. This approach also benefits the model with a more easy and manageable way of implement security, monitoring and redundancy.
 
 As the information may arrive at different rates, or even in the worst-case fail, the model functionalities, work in modules that are independent and they can work isolated, as well as, in parallel. To solve this problem inside of one particular module, was used smart gate queuing and load balancing techniques.
 
-To conclude was intended that the model, alongside with is integrated system, were capable of performing a location, taking into account the remaining battery of the device, and in the end create a profile-based decision system, in charge of dynamically choose the best location.
+To conclude was intended that the model, alongside with is integrated system, were capable of performing a location, taking into account the remaining battery of the device, and in the end create a profile-based decision system, in charge of dynamically choose the best location, providing this way the adaptive geolocation capability.
 
 
 

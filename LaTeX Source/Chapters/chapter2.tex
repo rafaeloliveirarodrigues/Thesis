@@ -40,7 +40,7 @@ The figure~\ref{fig:Device-battery-Comparison}, is based on the one from~\cite{H
   \label{fig:Device-battery-Comparison}
 \end{figure}
 
-The following table~\ref{tab:PwD-comparison} shows a comparison between the above-mentioned devices, where the price of the product is presented. In the technical part, a comparison of the  geolocation technique  and communication method is also shown. By reading this table the wearable type of these solutions are always similar except in the smart sole, and geolocation is always based on~\gls{GPS}, the communication is cellular except in the TicTocTracker product were WiFi is also an option. The conclusion is that all the solution are somehow similar, expensive, and not optimized for power efficiency. \newline
+The following table~\ref{tab:PwD-comparison} shows a comparison between the above-mentioned devices, where the price of the product is presented. In the technical part, a comparison of the  geolocation technique  and communication method is also shown. By reading this table the wearable type of these solutions are always similar except in the smart sole, and geolocation is always based on~\gls{GPS}, the communication is cellular except in the TicTocTracker product were WiFi is also an option. The conclusion is that all the solutions are somehow similar, expensive, and not optimized for power efficiency. \newline
 \begin{table}[htbp]
 \begin{tabular}{lllll}
 \hline
@@ -172,6 +172,7 @@ In short, all classes allow bidirectional communications. Class A support downli
 
 To conclude in the following table~\ref{tab:Lora-Dev} is a comparison between 4 devices using the LoRa technology. These devices as of June 2020 are available at the following links~\href{https://pycom.io/product/fipy/}{Fipy},~\href{https://uk.rs-online.com/web/p/sensor-development-kits/1359784/}{The Things Node},~\href{http://www.lilygo.cn/claprod_view.aspx?TypeId=21&Id=1255}{TTGO LoRa32},~\href{https://heltec.org/project/htcc-ab02/}{CubeCell}. From the data in table~\ref{tab:Lora-Dev}, is possible to observe that  the first device has a different programming language than the others, and they all have distinct LoRa radio modules, as well as different microcontrollers, where the processing power and memory are different. These are the characteristics necessary for the correct choice for each  use case.
 \begin{table}[htbp]
+\centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
 Company & Pycom & The Things Network & LILYGO & Heltec \\ \midrule
@@ -246,10 +247,11 @@ To solve this issue SIGFOX uses a random access feature. This feature consists o
 Finally, the high energy efficiency offered by SIGFOX relies on two main factors. The first one has mentioned above, the absence of pairing during transmissions which means that no sync messages are exchanged, between the end device and the base station, saving energy this way. The second one is the end device very low power consumption while idling, with this being  99\% of the time also contributes heavily to ensure long battery life.
 
 
-To conclude in the following table~\ref{tab:Sigfox-comparison} a comparison between 4 devices using the Sigfox technology is presented, where the price and the technical features are presented. These devices as of June 2020 are available at the next links~\href{https://pycom.io/product/fipy/}{Fipy},~\href{https://pt.farnell.com/stmicroelectronics/b-l072z-lrwan1/discovery-kit-iot-connectivity/dp/2708776?scope=partnumberlookahead&ost=B-L072Z-LRWAN1&searchref=searchlookahead&exaMfpn=true}{B-L072Z-LRWAN1},~\href{https://pt.farnell.com/on-semiconductor/dvk-sfjk-api-1-gevk/dev-kit-rf-txrx-japan-sigfox-network/dp/2775491?ost=SFJK-API-1-GEVK}{SFJK-API-1-GEVK}~\href{https://store.arduino.cc/arduino-mkr-fox-1200-1408}{MKR FOX 1200}. From the data in table~\ref{tab:Sigfox-comparison}, is possible to observe that programming interface is different, as well as, the microntroller. These are the two factors to take in consideration while chosing a Sigfox device.
+To conclude in the following table~\ref{tab:Sigfox-comparison} a comparison between 4 devices using the Sigfox technology is presented, where the price and the technical features are presented. These devices as of June 2020 are available at the next links~\href{https://pycom.io/product/fipy/}{Fipy},~\href{https://pt.farnell.com/stmicroelectronics/b-l072z-lrwan1/discovery-kit-iot-connectivity/dp/2708776?scope=partnumberlookahead&ost=B-L072Z-LRWAN1&searchref=searchlookahead&exaMfpn=true}{B-L072Z-LRWAN1},~\href{https://pt.farnell.com/on-semiconductor/dvk-sfjk-api-1-gevk/dev-kit-rf-txrx-japan-sigfox-network/dp/2775491?ost=SFJK-API-1-GEVK}{SFJK-API-1-GEVK},~\href{https://store.arduino.cc/arduino-mkr-fox-1200-1408}{MKR FOX 1200}. From the data in table~\ref{tab:Sigfox-comparison}, is possible to observe that programming interface is different, as well as, the microntroller. These are two factors to take in consideration while chosing a Sigfox device.
 
 
 \begin{table}[htbp]
+\centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
 Company & Pycom & STM & ON Semicondutor & Arduino \\ \midrule
@@ -313,6 +315,7 @@ NB-IoT terminal comprises the sum of all end devices into the system. These term
 
 To conclude in the following table~\ref{tab:NB-comparison} was done a comparison between 4 devices using the NB-IoT technology. These devices as of June 2020 are available at the following links~\href{https://pycom.io/product/fipy/}{Fipy},~\href{https://store.arduino.cc/arduino-mkr-nb-1500-1413}{MKR NB 1500},~\href{https://shop.sodaq.com/sodaq-sara-sff-r412m.html}{SARA R412m}, ~\href{https://pt.farnell.com/on-semiconductor/dvk-axm0f243-868-1-gevk/development-kit-868mhz-rf-transceiver/dp/3010439?ost=AXM0F243-868-1-GEVK}{AXM0F243-868-1-GEVK}. From the data in table~\ref{tab:NB-comparison}, is possible to observe that first two devices cost half of the other two. The microncontroller is always an ARM  M0 except for the first device that is based on a Esp32, wich means this first device as microntroller with more cores (2 instead of 1), and higher clock frequency, but have fewer~\gls{GPIO} pins. This microcontroller support real multi-thread code, but can control less things. These are some of the characteristics needed for the correct choice for each  use case.
 \begin{table}[htbp]
+\centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
 Company & Pycom & Arduino & SODAQ & On Semicondutor \\ \midrule
@@ -383,8 +386,9 @@ And is likely to see major North American telecom companies, pushing LTE-M since
   
 \end{figure}
 
-To conclude in the following table~\ref{tab:LTE-comparison} is presented a comparison between 4 devices using LTE-M technology. These devices as of June 2020 are available at the following links~\href{https://pycom.io/product/fipy/}{Fipy},~\href{https://store.arduino.cc/arduino-mkr-nb-1500-1413}{MKR NB 1500},~\href{https://www.sparkfun.com/products/14997}{LTE CAT M1SARA-R4},~\href{https://eu.mouser.com/ProductDetail/DIGI/XBC-V1-UT-001?qs=KAq9QXcE8HCP4FMHjZUvOA==&utm_source=eciaauthorized&utm_medium=aggregator&utm_campaign=XBC-V1-UT-001&utm_term=XBC-V1-UT-001&utm_content=DIGI}{XBeeLTE Cat 1}. The table~\ref{tab:LTE-comparison}, shows that the first two devices have a microcontroller, but the last two the ones from the left side do not have a microncronteller. The last device has built-in MicroPython support with 24KB RAM and 8KB Flash. These are the features need for the correct choice for any use case.
+To conclude in the following table~\ref{tab:LTE-comparison} is presented a comparison between 4 devices using LTE-M technology. These devices as of June 2020 are available at the following links~\href{https://pycom.io/product/fipy/}{Fipy},~\href{https://store.arduino.cc/arduino-mkr-nb-1500-1413}{MKR NB 1500},~\href{https://www.sparkfun.com/products/14997}{LTE CAT M1SARA-R4},~\href{https://eu.mouser.com/ProductDetail/DIGI/XBC-V1-UT-001?qs=KAq9QXcE8HCP4FMHjZUvOA==&utm_source=eciaauthorized&utm_medium=aggregator&utm_campaign=XBC-V1-UT-001&utm_term=XBC-V1-UT-001&utm_content=DIGI}{XBeeLTE Cat 1}. The table~\ref{tab:LTE-comparison}, shows that the first two devices have a microcontroller, but the last two the ones from the right side do not have a microncronteller, being only sold as a Shield. The last device has built-in MicroPython support with 24KB RAM and 8KB Flash. These are the features need for the correct choice for any use case.
 \begin{table}[htbp]
+\centering
 \begin{tabular}{@{}lllll@{}}
 \toprule
 Company & Pycom & Arduino & SparkFun & Digi \\ \midrule

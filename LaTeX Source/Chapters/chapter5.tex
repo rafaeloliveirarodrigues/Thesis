@@ -61,7 +61,7 @@ The adopted procedure for this work, during the development phase, was first use
 \section{Use Cases}
 
 In this section will be described the different use cases for this thesis. The three  use cases are~\nameref{subsec:laboratory},~\nameref{subsec:real_world} and~\nameref{subsec:Use_case_Swiss}. In these use cases the objective was to get the results for the geolocation. 
-For these objective  tests were conducted for the geolocation technologies both GNSS, GNSS-free. These tests consisted of gathering information from different location points, at different speeds, to discover the geolocation accuracy of such technologies. 
+For these objective  tests were conducted for the geolocation technologies both GNSS, and GNSS-free. These tests consisted of gathering information from different location points, at different speeds, to discover the geolocation accuracy of such technologies. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%  Start use case 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -82,7 +82,7 @@ In the Beacon, side was created an advertisement for the beacon called $Pybeacon
 
 In the device side, there is a scan for Bluetooth advertisers, if one match the $Pybeacon$ the device reads the values from the service, getting the data from the Beacon. This can also be done for managing the accompanied flag, that was presented in~\ref{tab:Profiles}. This flag is used to know if the device can listen to the Bluetooth name from smartphone  of the carer in charge of the~\gls{PwD}.
 
-The location accuracy is the one defined by the user, so it is going to be the best possible, the communication distance using both internal antennas was 2 m with obstacles, and 5m with a line of sight this value can increase to around 10 m with the use of an external antenna in the beacon side. The time used to retrieve the location is approximately 1s, and the BLE cannot be used to transmit the full Status message. \newline
+The location accuracy is the one defined by the user, so it is going to be the best possible, the communication distance using both internal antennas was 2 m with obstacles, and 5m with a line of sight this value can increase to around 10 m with the use of an external antenna in the beacon side. The time used to retrieve the location is approximately 4s, and the BLE cannot be used to transmit the full Status message. \newline
 %\begin{figure}[htbp]
 %  \centering
 
@@ -98,7 +98,7 @@ The location accuracy is the one defined by the user, so it is going to be the b
 \begin{tabular}{@{}ccccc@{}}
 \toprule
  & Max accuracy & Min Accuracy & Communication &   \hspace{0.7cm}Time\hspace{0.7cm}    \\ \midrule
-\begin{tabular}[c]{@{}c@{}}BLE \\ Indoor\end{tabular} & 1 m & 10 m & No & 1 s\\ \bottomrule
+\begin{tabular}[c]{@{}c@{}}BLE \\ Indoor\end{tabular} & 1 m & 10 m & No & 4 s\\ \bottomrule
 \end{tabular}
 \caption{BLE Results}
 \label{tab:BLE_Res}
@@ -493,7 +493,7 @@ In short, LoRa had the worst accuracy from all of the methods, but a the same ti
 \label{subsec:Use_case_Swiss}
 
 
-The last use case was held in Switzerland where the first stage of the solution, previously described in chapter~\ref{cha:Adaptive_Geolocation}, that was called hierarchical,(where the decision is made using the approximate accuracy of each geolocation method), performed trials with real people with dementia. 
+The last use case was held in Switzerland where the first stage of the solution, previously described in chapter~\ref{cha:Adaptive_Geolocation}, that was called hierarchical, (where the decision is made using the approximate accuracy of each geolocation method), performed trials with real people with dementia. 
 
 The model after the previous testing phases  needed to be validated, therefore was used in this use case. The firsts result for the model validation, obtained during the initial phase of trials, were a total of over 50000 received messages from 10/02/2020 until 10/03/2020. The difference in the received messages and the sent messages was less than 1\%. The implemented system was able to support spikes of simultaneously received messages from different devices, and the tested version was able to process 1 message per 2 seconds. These first tests were conducted using 4 devices.
 
@@ -523,7 +523,7 @@ In the next figure~\ref{fig:node_red_debug}, is possible to observe the output, 
 
 From the data  in the chart~\ref{fig:OpennCellID_chart}, referent to OpenCellID API is possible to conclude that over 50000 calls were made, meaning that the system has often used the WiFi data, and from the data of the same chart is possible to observe that the result of the location failed several times, that is the reason  why it was important to have 3 APIs, has location sources.
 
-To conclude the system was able to dynamically choose the best location, from the information received. Unfortunately due to the Covid-19 pandemic, the trials with elderly people stopped, which means that the validation for the second stage was not done within real-life trials, being only tested by the author as described in the following section\ref{sec:Other Analysis}.
+To conclude the system was able to dynamically choose the best location, from the information received. Unfortunately due to the Covid-19 pandemic, the trials with elderly people stopped, which means that the validation for the second stage was not done within real-life trials, being only tested by the author as described in the following section~\ref{sec:Other Analysis}.
 
 %ter uma tabela 3 casos de uso radar com 4 niveis
 % subsection Work Scenario (end)
@@ -540,14 +540,14 @@ To conclude the system was able to dynamically choose the best location, from th
 \section{Other Analysis}
 \label{sec:Other Analysis}
 
-In this section, will be the other analysis  need in the implementation of the 'Advanced'  functional stage. This section will comprise the communication resilience analysis and the power management analysis.
+In this section, will be the other analysis  need for the implementation of the  second functional stage, which is the Advanced. This section will comprise the communication resilience analysis and the power management analysis.
 
 
 %############### Start Communication Resilience ########
 \subsection{Communication Resilience}
 \label{sec:Comunication_Resilience}
 
-In this analysis, the author performed tests for communication resilience. These tests were done to test the communication resilience that was first introduced in figure~\ref{fig:Connect} from chapter~\ref{cha:Implementation}. The tests were done since they were necessary for implementing the 'Advanced' functional stage.
+In this analysis, the author performed tests for communication resilience. These tests were done to test the communication resilience that was first introduced in figure~\ref{fig:Connect} from chapter~\ref{cha:Implementation}. The tests were done since they were necessary for implementing the second functional stage.
 
 These tests were conducted to the two different methods: LoRa and NB-IoT. To test the communication resilience, the communication fallback capabilities were tested. If the device loses the NB-IoT link, it should fall back to using the LoRa stack.
 In case the communication network changes, then the Adaptive Geolocation Solver service should be able to handle the data transition and continue the processing of information. It should also be possible to force the change of the communication technology based on the energy efficiency settings.
@@ -571,7 +571,7 @@ On the device side, the response was similar to the previous test. The device re
 \subsection{Power Management}
 \label{subsec:power_management}
 
-For the purpose of getting the results for power consumption, need in the implementation of the 'Advanced'  functional stage. An analysis with several tests was conducted to the different communication  and location methods. These tests consisted of logging information from the device, with the aim to discover the battery duration, current and power, to perform  more efficient power management. From the device manufacturer is possible to observe the next figure~\ref{fig:PowerTableAll}, where some values are already provided. All of the tests were conducted in the same fix place, at a  stationary speed, with the same 2 FiPy and two LiPo batteries with 3.7V and 800mAh, the results are the average from 4 tests.
+For the purpose of getting the results for power consumption, need in the implementation of the Advanced functional stage. An analysis with several tests was conducted to the different communication  and location methods. These tests consisted of logging information from the device, with the aim to discover the battery duration, current and power, to perform  more efficient power management. From the device manufacturer is possible to observe the next figure~\ref{fig:PowerTableAll}, where some values are already provided. All of the tests were conducted in the same fix place, at a  stationary speed, with the same 2 FiPy and two LiPo batteries with 3.7V and 800mAh, the results are the average from 4 tests.
 
 \begin{figure}[htbp]
   \centering
@@ -704,13 +704,13 @@ To close this analysis, a comparison with different communications methods, can 
 \label{sec:geocompare}
 
 
-In this subsection, the objective is to clarify and compare the different geolocation techniques from the three use cases. The first geolocation tested was BLE, the optimal scenario for this will be indoor, short-range location, for example, to know if a person is in some room, or in a building to know in which floor the person is at. The second one in the study was the GNSS. This is the classic for solving location problems, and the best fit would be outdoor in a rural environment, but it will also work in an urban environment. The third one is WiFi and the best scenario for this assisted location will be urban outdoor, where the accuracy for the results can be close to GNSS, but it is also a viable options for a use case where the person is in a constant transition from indoor to outdoor environments. The last one is the analyse of the LoRa Metadata, where the optimal scenario for this assisted location will be urban or rural outdoor, but can also work Indoor. The best fit for this technique is essentially when none of the others is available or the remaining battery is to low.
+In this section, the objective is to clarify and compare the different geolocation techniques from the three use cases. The first geolocation tested was BLE, the optimal scenario for this will be indoor, short-range location, for example, to know if a person is in some room, or in a building to know in which floor the person is at. The second one in the study was the GNSS. This is the classic for solving location problems, and the best fit would be outdoor in a rural environment, but it will also work in an urban environment. The third one is WiFi and the best scenario for this assisted location will be urban outdoor, where the accuracy for the results can be close to GNSS, but it is also a viable options for a use case where the person is in a constant transition from indoor to outdoor environments. The last one, is the analyse of the LoRa Metadata, where the optimal scenario for this assisted location will be urban or rural outdoor, but can also work Indoor. The best fit for this technique is essentially when none of the others is available or the remaining battery is to low.
 
-The next figure~\ref{fig:radar1} uses a radar diagram, to provide a visual and easier interpretation, of the obtained results. It is used for  comparing the different geolocation techniques with each other.
+The next figure~\ref{fig:radar1} uses a radar diagram, to provide a visual and easier interpretation, of the obtained results, the axis value 1 correspond to Poor, . It is used for  comparing the different geolocation techniques with each other. In the figure, the vertical axis values from 1 to 4 correspond to the following levels Poor, Fair, Good, Excellent.
 \begin{figure}[htbp]
   \centering
   
-    {\includegraphics[width=0.8\linewidth]{Chapters/Figures/radarfinal3.pdf}}%
+    {\includegraphics[width=\linewidth]{Chapters/Figures/radarfinal3.pdf}}%
  
   \caption{Geolocation Results Comparison}
   \label{fig:radar1}
@@ -721,7 +721,7 @@ From the previous figure, the next graphic~\ref{fig:radarline} was done. In this
 \begin{figure}[htbp]
   \centering
   
-    {\includegraphics[width=0.8\linewidth]{Chapters/Figures/radarline.pdf}}%
+    {\includegraphics[width=0.9\linewidth]{Chapters/Figures/radarline.pdf}}%
  
   \caption{Geolocation Results Comparison line}
   \label{fig:radarline}
